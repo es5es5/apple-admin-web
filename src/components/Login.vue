@@ -27,7 +27,8 @@ export default {
         default:
           break
       }
-      await authService.signInWithPopup(provider)
+      const user = await authService.signInWithPopup(provider)
+      this.$store.commit('setUser', user)
     }
   }
 }
