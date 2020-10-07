@@ -1,0 +1,3 @@
+[submodule "colony-vue"]
+	path = colony-vue
+	url = ../../es5es5/colony-vue.git

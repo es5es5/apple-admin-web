@@ -5,6 +5,6 @@
 </template>
 
 <style lang="scss">
-// @import '@/../colony-vue/src/assets/scss/reset.scss';
-// @import '@/../colony-vue/src/assets/scss/grid.scss';
+@import '@/../colony-vue/src/assets/scss/reset.scss';
+@import '@/../colony-vue/src/assets/scss/grid.scss';
 </style>
