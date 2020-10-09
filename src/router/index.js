@@ -9,7 +9,12 @@ const routes = [
   {
     path: '/',
     name: 'Main',
-    component: MainLayout
+    component: MainLayout,
+    children: [{
+      path: 'apple',
+      name: 'Apple',
+      component: () => import('@/templates/apple/AppleList')
+    }]
   },
   {
     path: '/login',

@@ -8,4 +8,5 @@
 @import '@/../colony-vue/src/assets/scss/reset.scss';
 @import '@/../colony-vue/src/assets/scss/grid.scss';
 @import '@/assets/scss/variable.scss';
+@import '@/assets/scss/reset.scss';
 </style>

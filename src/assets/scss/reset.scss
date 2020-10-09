@@ -1,0 +1,8 @@
+@charset 'utf-8';
+
+// Responsive
+html, body {
+  font-size: 22px;
+  @media (max-width: 1200px) { font-size: 20px; }
+  @media (max-width: 1024px) { font-size: 18px; }
+}
