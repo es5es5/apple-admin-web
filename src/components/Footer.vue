@@ -48,6 +48,8 @@ export default {
   background-color: $primary;
   font-size: 1.5rem;
   color: $title;
-  font-weight: 700;
+  font-family: SingleDay;
+  font-weight: bold;
+  letter-spacing: .25rem;
 }
 </style>

@@ -6,3 +6,9 @@ html, body {
   @media (max-width: 1200px) { font-size: 20px; }
   @media (max-width: 1024px) { font-size: 18px; }
 }
+
+@font-face {
+  font-family: 'SingleDay';
+  src: local('SingleDay'),
+       url('~@/assets/fonts/SingleDay-Regular.ttf') format('truetype');
+}

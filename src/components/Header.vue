@@ -4,10 +4,12 @@
       <div class="row">
         <div class="grid-1-6">
           <div class="logo_wrap" :class="scrolling ? 'scrolling' : ''">
-            <img src="@/assets/images/apple-home.png" class="apple_logo" alt="home">
+            <img src="@/assets/images/apple-home.png" class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
-        <div class="grid grid-2-3 empty"></div>
+        <div class="grid grid-2-3">
+          <h1 class="header-title">{{ mixinRouteMetaTitle }}</h1>
+        </div>
         <div class="grid grid-1-6">
           <div class="hamburger_wrap">
             <img src="@/assets/images/hamburger.png" class="hamburger" alt="hamburger">
@@ -39,6 +41,11 @@ export default {
       } else {
         this.scrolling = false
       }
+    },
+    goHome () {
+      this.$router.push({
+        name: 'Main'
+      })
     }
   }
 }
@@ -63,6 +70,15 @@ export default {
   height: 3rem;
   line-height: 1;
   vertical-align: middle;
+}
+
+.header-title {
+  font-family: SingleDay;
+  color: $title;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: .5rem;
 }
 
 .logo_wrap {
