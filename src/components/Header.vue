@@ -3,7 +3,7 @@
     <div class="header_wrap">
       <div class="row">
         <div class="grid-1-6">
-          <div class="logo_wrap" :class="scrolling ? 'scrolling' : ''">
+          <div class="logo_wrap">
             <img src="@/assets/images/apple-home.png" class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
@@ -58,11 +58,14 @@ export default {
   left: 0;
   right: 0;
   z-index: 5000;
-  transition: background-color .5s;
+  transition: all .5s;
   background-color: rgba($success, .8);
   border-bottom: 1px solid rgba($success, .3);
 
-  &.scrolling { background-color: $background; }
+  &.scrolling {
+    color: $primary;
+    background-color: $background;
+  }
 }
 
 .header_wrap {
@@ -74,7 +77,7 @@ export default {
 
 .header-title {
   font-family: SingleDay;
-  color: $title;
+  color: inherit;
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
@@ -95,7 +98,6 @@ export default {
   height: 2rem;
   border-right: 1px solid rgba($border, .5);
 
-  &.scrolling { border-right: 1px solid rgba($border, 1); }
   &:hover {
     cursor: pointer;
   }
