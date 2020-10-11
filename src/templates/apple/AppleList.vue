@@ -2,22 +2,18 @@
   <div>
     <div>
       <ul class="apple_wrap">
-        <li class="apple-item">
-          <h3 class="title">충주사과 15</h3>
-          <span class="customerName">김고객</span><span class="customerMobile">010-5555-4444</span>
-          <span class="customerBank">신한</span>
-          <span class="customerAccount">110-555-9994444</span>
-          <p class="customerAddress">서울시 강남구 마음대로 486길</p>
-          <p class="customerAddressDetail">301동 1024호</p>
-        </li>
-        <li class="apple-item">
-          <h3 class="title">충주사과 15</h3><span class="customerName">김고객</span><span class="customerMobile">010-5555-4444</span>
-        </li>
-        <li class="apple-item">
-          <h3 class="title">OO사과 20</h3>
-        </li>
-        <li class="apple-item">
-          <h3 class="title">15</h3>
+        <li class="apple-item" v-for="index in 5" :key="index">
+          <div class="row">
+            <div class="grid grid-11-12">
+              <h3 class="title">충주사과 15</h3>
+              <span class="customerName">김고객</span><span class="customerMobile">010-5555-4444</span>
+              <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p>
+              <p class="customerAddress">서울시 강남구 마음대로 486길</p>
+              <p class="customerAddressDetail">301동 1024호</p>
+              <p class="price">255,000</p>
+            </div>
+            <div class="grid grid-1-12"></div>
+          </div>
         </li>
       </ul>
     </div>
@@ -49,29 +45,46 @@ export default {
   .apple-item {
     padding: 1rem .5rem;
     border-bottom: 1px solid $border;
+    &:last-child { border-bottom: transparent; }
 
     .title {
-      padding: .5rem;
-      line-height: 2rem;
+      margin-bottom: .5rem;
+      padding: 0 .5rem;
       vertical-align: middle;
       font-size: 2rem;
       font-weight: bold;
       color: $primary;
     }
 
+    .price {
+      text-align: right;
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-top: .5rem;
+    }
+
     .customerName {
       margin-right: .5rem;
-      line-height: 1;
+      font-size: 1.1rem;
+      color: $success;
       font-weight: bold;
       vertical-align: middle;
     }
     .customerMobile {
-      line-height: 1;
+      font-size: 1.1rem;
+      color: $success;
       font-weight: bold;
       vertical-align: middle;
     }
-    .customerBank {}
+    .customerBank {
+      margin-top: .5rem;
+    }
     .customerAccount {}
+
+    .customerAddress {
+      margin-top: .5rem;
+    }
+    .customerAddressDetail {}
   }
 }
 </style>
