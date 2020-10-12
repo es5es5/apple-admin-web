@@ -1,0 +1,17 @@
+// {
+//   "name": "충주 사과",
+//   "short_name": "충주 사과",
+//   "description": "충주 사과에 오신걸 환영합니다.",
+//   "icons": [
+//       {
+//           "src": "/img/icons/apple-icon.png",
+//           "sizes": "192x192",
+//           "type": "image/png",
+//           "purpose": "any maskable"
+//       }
+//   ],
+//   "start_url": "/",
+//   "display": "standalone",
+//   "background_color": "#EFEFEF",
+//   "theme_color": "#42b983"
+// }
