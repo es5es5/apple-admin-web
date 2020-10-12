@@ -4,13 +4,14 @@
     <main class="main">
       <h3 class="greeting">안녕하세요! <span class="userName">관리자님</span></h3>
       <ul class="nav_wrap">
-        <li class="nav-item">
-          <span class="nav-title">
-            <img src="" alt="">사과 관리</span>
-        </li>
-        <li class="nav-item">
-          <span class="nav-title">고객 관리</span>
-        </li>
+        <router-link tag="li" class="nav-item apple" :to="{ name: 'Apple' }">
+          <img src="@/assets/images/apple-normal.svg" class="nav-image" alt="apple">
+          <p class="nav-title">사과 관리</p>
+        </router-link>
+        <router-link tag="li" class="nav-item customer" :to="{ name: 'Customer' }">
+          <img src="@/assets/images/customer.svg" class="nav-image" alt="apple">
+          <p class="nav-title">고객 관리</p>
+        </router-link>
       </ul>
     </main>
   </div>
@@ -45,16 +46,29 @@ export default {
 
 .nav-item {
   margin: 1rem 0;
-  padding: 20% 0;
+  padding: 3rem 0;
 
   text-align: center;
-  background-color: #CFD1D3;
   border-radius: .5rem;
+  background-color: $background;
+
+  &.apple {
+    background-color: rgba($primary, .5);
+  }
+
+  &.customer {
+    background-color: rgba($success, .5);
+  }
 }
 
 .nav-title {
   color: $title;
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+.nav-image {
+  width: 5rem;
+  height: 5rem;
 }
 </style>

@@ -27,6 +27,13 @@ const routes = [
         title: '사과'
       },
       component: () => import('@/templates/apple/AppleList')
+    }, {
+      path: 'customer',
+      name: 'Customer',
+      meta: {
+        title: '고객'
+      },
+      component: () => import('@/templates/customer/CustomerList')
     }]
   },
   {
