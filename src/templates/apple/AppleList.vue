@@ -10,6 +10,7 @@
               <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p>
               <p class="customerAddress">서울시 강남구 마음대로 486길</p>
               <p class="customerAddressDetail">301동 1024호</p>
+              <p class="createtime">2020-10-12 15:44</p>
               <p class="price">255,000</p>
             </div>
             <div class="grid grid-1-12"></div>
@@ -49,7 +50,6 @@ export default {
 
     .title {
       margin-bottom: .5rem;
-      padding: 0 .5rem;
       vertical-align: middle;
       font-size: 2rem;
       font-weight: bold;
@@ -57,10 +57,10 @@ export default {
     }
 
     .price {
-      text-align: right;
+      float: right;
+      margin-top: -2rem;
       font-size: 1.5rem;
       font-weight: 800;
-      margin-top: .5rem;
     }
 
     .customerName {
