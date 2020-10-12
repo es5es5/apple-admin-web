@@ -4,7 +4,7 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/apple-home.png" class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/apple-home.svg" class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
         <div class="grid grid-2-3">
@@ -12,7 +12,7 @@
         </div>
         <div class="grid grid-1-6">
           <div class="hamburger_wrap">
-            <img src="@/assets/images/hamburger.png" class="hamburger" alt="hamburger">
+            <img src="@/assets/images/hamburger.svg" class="hamburger" alt="hamburger">
           </div>
         </div>
       </div>
