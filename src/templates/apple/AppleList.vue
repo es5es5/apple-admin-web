@@ -2,9 +2,9 @@
   <div>
     <div>
       <ul class="apple_wrap">
-        <li class="apple-item" v-for="index in 5" :key="index">
+        <li class="apple-item" v-for="index in 10" :key="index">
           <div class="row">
-            <div class="grid grid-11-12">
+            <div class="grid grid-1">
               <h3 class="title">충주사과 15</h3>
               <span class="customerName">김고객</span><span class="customerMobile">010-5555-4444</span>
               <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p>
@@ -13,7 +13,6 @@
               <p class="createtime">2020-10-12 15:44</p>
               <p class="price">255,000</p>
             </div>
-            <div class="grid grid-1-12"></div>
           </div>
         </li>
       </ul>
@@ -44,9 +43,12 @@ export default {
   }
 
   .apple-item {
-    padding: 1rem .5rem;
+    margin: .5rem 0;
+    padding: 1rem;
     border-bottom: 1px solid $border;
     &:last-child { border-bottom: transparent; }
+    background-color: $background;
+    border-radius: .5rem;
 
     .title {
       margin-bottom: .5rem;

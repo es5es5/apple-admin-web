@@ -31,7 +31,7 @@ export default {
 <style lang="scss" scoped>
 .main {
   margin: 3rem 0;
-  padding: .5rem;
+  padding: 1rem;
 }
 
 .greeting {
@@ -45,6 +45,8 @@ export default {
 .nav_wrap {}
 
 .nav-item {
+  @include hover;
+
   margin: 1rem 0;
   padding: 3rem 0;
 

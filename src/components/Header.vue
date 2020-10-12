@@ -44,7 +44,7 @@ export default {
     },
     goHome () {
       this.$router.push({
-        name: 'Main'
+        name: 'Home'
       })
     }
   }
@@ -60,7 +60,7 @@ export default {
   z-index: 5000;
   transition: all .5s;
   background-color: rgba($success, .8);
-  border-bottom: 1px solid rgba($success, .3);
+  border-bottom: 2px solid rgba($success, .3);
 
   &.scrolling {
     color: $primary;
