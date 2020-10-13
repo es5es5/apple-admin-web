@@ -28,6 +28,13 @@ const routes = [
       },
       component: () => import('@/templates/apple/AppleList')
     }, {
+      path: 'apple/create',
+      name: 'AppleCreate',
+      meta: {
+        title: '사과 등록'
+      },
+      component: () => import('@/templates/apple/AppleCreate')
+    }, {
       path: 'customer',
       name: 'Customer',
       meta: {

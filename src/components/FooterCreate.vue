@@ -1,23 +1,40 @@
 <template>
-  <div id="footer">
+  <footer id="footer">
     <div class="footer_wrap">
       <div class="row">
         <div class="grid-1-1">
-          <button type="button" class="btn btn-fill">등록하기</button>
+          <button type="button" class="btn btn-fill" @click="goCreate(_model)">등록하기</button>
         </div>
       </div>
     </div>
-  </div>
+  </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer',
+  name: 'FooterCreate',
+  computed: {
+    _model () {
+      return this.model
+    }
+  },
   data () {
     return {
     }
   },
+  props: {
+    model: {
+      type: String,
+      required: true,
+      default: () => ''
+    }
+  },
   methods: {
+    goCreate (model) {
+      this.$router.push({
+        name: `${model}Create`
+      })
+    }
   }
 }
 </script>

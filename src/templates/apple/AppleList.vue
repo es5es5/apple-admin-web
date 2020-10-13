@@ -16,13 +16,16 @@
           </div>
         </li>
       </ul>
+      <FooterCreate model="Apple" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppleList'
+  name: 'AppleList',
+  created () {
+  }
 }
 </script>
 

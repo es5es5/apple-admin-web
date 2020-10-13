@@ -4,19 +4,16 @@
     <main class="main">
       <router-view></router-view>
     </main>
-    <Footer />
   </div>
 </template>
 
 <script>
 import Header from './Header'
-import Footer from './Footer'
 
 export default {
   name: 'MainLayout',
   components: {
-    Header,
-    Footer
+    Header
   }
 }
 </script>

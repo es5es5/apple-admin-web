@@ -7,13 +7,16 @@
           <p class="customerMobile">010-2222-3333</p>
         </li>
       </ul>
+      <FooterCreate model="Customer" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppleList'
+  name: 'AppleList',
+  components: {
+  }
 }
 </script>
 
