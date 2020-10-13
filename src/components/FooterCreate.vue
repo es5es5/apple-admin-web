@@ -3,7 +3,7 @@
     <div class="footer_wrap">
       <div class="row">
         <div class="grid-1-1">
-          <button type="button" class="btn btn-fill" @click="goCreate(_model)">등록하기</button>
+          <button type="button" class="btn-fill" @click="goCreate(_model)">등록하기</button>
         </div>
       </div>
     </div>
@@ -68,5 +68,6 @@ export default {
   font-family: SingleDay;
   font-weight: bold;
   letter-spacing: .25rem;
+  border-radius: .5rem .5rem 0 0;
 }
 </style>

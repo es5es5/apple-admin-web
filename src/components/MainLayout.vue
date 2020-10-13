@@ -20,6 +20,6 @@ export default {
 
 <style lang="scss" scoped>
 .main {
-  margin: 3rem 0;
+  padding: 3.5rem .5rem;
 }
 </style>

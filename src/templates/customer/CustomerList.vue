@@ -22,9 +22,6 @@ export default {
 
 <style lang="scss" scoped>
 .apple_wrap {
-  padding: 1rem;
-  margin: 0 auto;
-
   @media (max-width: 1200px) { width: 100%; }
   @media (min-width: 1200px) {
     width: 1200px;
