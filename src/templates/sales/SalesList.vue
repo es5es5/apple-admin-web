@@ -18,6 +18,9 @@
           <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
           <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}</p>
           <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
+
+          <span class="delete" @click="deleteSales(item.id)">❌</span>
+          <!-- <img src="@/assets/images/delete.svg" alt="delete" class="delete"> -->
         </li>
       </ul>
       <Footer>
@@ -45,6 +48,12 @@ export default {
     }
   },
   methods: {
+    async deleteSales (id) {
+      const ok = window.confirm('정말 삭제하시겠습니까?')
+      if (ok) {
+        await dbService.doc(`sales/${id}`).delete()
+      }
+    },
     async getSalesList () {
     //   let tweets =
     //   await dbService.collection('tweets')
@@ -95,10 +104,22 @@ export default {
     background-color: $background;
     border-radius: .5rem;
 
+    .delete {
+      position: absolute;
+      text-align: center;
+      top: .5rem;
+      right: .5rem;
+      padding: .5rem;
+      font-size: 1rem;
+      color: $error;
+    }
+
     .apple_wrap {
       position: relative;
+      margin-bottom: .5rem;
       display: inline-block;
       width: 3.5rem;
+      height: 3.5rem;
     }
 
     .apple_wrap::after {
@@ -141,12 +162,7 @@ export default {
       color: $gray;
     }
 
-    .customerBank {
-      margin-top: .5rem;
-    }
-
     .customerAddress {
-      margin-top: .5rem;
     }
 
     .createtime {
