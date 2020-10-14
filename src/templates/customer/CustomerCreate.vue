@@ -21,7 +21,7 @@
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill" @click="addCustomer">등록하기</button>
+        <button type="button" class="btn-fill primary" @click="addCustomer">등록하기</button>
       </template>
     </Footer>
   </div>

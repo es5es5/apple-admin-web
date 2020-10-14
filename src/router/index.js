@@ -35,6 +35,13 @@ const routes = [
       },
       component: () => import('@/templates/sales/SalesCreate')
     }, {
+      path: 'sales/:id',
+      name: 'SalesUpdate',
+      meta: {
+        title: '판매 수정'
+      },
+      component: () => import('@/templates/sales/SalesUpdate')
+    }, {
       path: 'customer',
       name: 'Customer',
       meta: {

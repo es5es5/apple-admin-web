@@ -24,7 +24,7 @@
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill primary" @click="createSales">등록하기</button>
+        <button type="button" class="btn-fill orange" @click="updateSales">수정하기</button>
       </template>
     </Footer>
   </div>
@@ -37,7 +37,15 @@ import {
 } from '@/plugins/fbase'
 
 export default {
-  name: 'SalesCreate',
+  name: 'SalesUpdate',
+  created () {
+    this.getSales()
+  },
+  computed: {
+    _id () {
+      return this.$route.params.id
+    }
+  },
   data () {
     return {
       salesForm: {
@@ -61,11 +69,18 @@ export default {
     }
   },
   methods: {
-    async createSales () {
+    async getSales () {
+      await dbService.collection('sales').doc(this._id).get().then(doc => {
+        this.salesForm = doc.data()
+      })
+    },
+    async updateSales () {
+      this.salesForm.updatetime = Date.now()
       this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
-      await dbService.collection('sales').add(
+      await dbService.doc(`sales/${this._id}`).update(
         this.salesForm
       )
+      this.goBack()
     }
   }
 }

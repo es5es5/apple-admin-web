@@ -3,7 +3,7 @@
     <div>
       <ul class="sales_wrap">
         <transition name="fade" mode="out-in" v-for="(item, index) in salesList" :key="index">
-          <li class="sales-item">
+          <li class="sales-item" @click="goUpdate(item.id)">
             <div class="row">
               <div class="grid grid-1-4 empty">
                 <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
@@ -27,7 +27,7 @@
 
       <Footer>
         <template v-slot:button>
-          <button type="button" class="btn-fill" @click="goCreate">등록하기</button>
+          <button type="button" class="btn-fill primary" @click="goCreate">등록하기</button>
         </template>
       </Footer>
     </div>
@@ -39,6 +39,7 @@ import {
   // authService,
   dbService
 } from '@/plugins/fbase'
+
 export default {
   name: 'SalesList',
   created () {
@@ -75,6 +76,14 @@ export default {
       this.$router.push({
         name: 'SalesCreate'
       })
+    },
+    goUpdate (id) {
+      this.$router.push({
+        name: 'SalesUpdate',
+        params: {
+          id
+        }
+      })
     }
   }
 }
@@ -105,6 +114,7 @@ export default {
     &:last-child { border-bottom: transparent; }
     background-color: $background;
     border-radius: .5rem;
+    cursor: pointer;
 
     .delete {
       position: absolute;

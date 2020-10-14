@@ -35,12 +35,14 @@ export default {
   border: 1px solid transparent;
   width: 100%;
   height: 3rem;
-  background-color: $primary;
   font-size: 1.5rem;
   color: $title;
   font-family: SingleDay;
   font-weight: bold;
   letter-spacing: .25rem;
   border-radius: 1rem 1rem 0 0;
+
+  &.primary { background-color: $primary; }
+  &.orange { background-color: $orange; }
 }
 </style>

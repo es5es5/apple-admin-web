@@ -9,7 +9,7 @@
       </ul>
       <Footer model="Customer">
         <template v-slot:button>
-          <button type="button" class="btn-fill" @click="goCreate">등록하기</button>
+          <button type="button" class="btn-fill primary" @click="goCreate">등록하기</button>
         </template>
       </Footer>
     </div>
@@ -55,6 +55,7 @@ export default {
     &:last-child { border-bottom: transparent; }
     background-color: $background;
     border-radius: .5rem;
+    cursor: pointer;
 
     .title {
       margin-bottom: .5rem;
