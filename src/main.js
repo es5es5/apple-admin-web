@@ -4,6 +4,7 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import './plugins'
+import './js'
 import GlobalComponents from './components'
 
 Vue.use(GlobalComponents)

@@ -17,8 +17,8 @@
           <!-- <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p> -->
           <p class="customerAddress">{{ item.customerAddress }}</p>
           <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
-          <p class="createtime">{{ item.createtime }}</p>
-          <p class="price">{{ item.price }}</p>
+          <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd EEE') }}</p>
+          <p class="price">{{ item.price | numberWithComma }}</p>
         </li>
       </ul>
       <Footer>
@@ -35,7 +35,6 @@ import {
   // authService,
   dbService
 } from '@/plugins/fbase'
-
 export default {
   name: 'SalesList',
   created () {
