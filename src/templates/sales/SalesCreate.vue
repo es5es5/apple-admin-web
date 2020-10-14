@@ -5,31 +5,61 @@
         <fieldset class="row-05">
           <!-- <legend>사과 등록</legend> -->
           <label for="사과">사과</label>
-          <input type="number" id="사과" min="0" placeholder="사과 개수">
+          <input type="number" id="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" required>
 
           <label for="고객">고객</label>
-          <input type="text" id="고객" placeholder="고객명">
+          <input type="text" id="고객" placeholder="고객명" v-model="salesForm.customerName">
 
           <label for="핸드폰">핸드폰 번호</label>
-          <input type="text" id="핸드폰" placeholder="핸드폰 번호">
+          <input type="text" id="핸드폰" placeholder="핸드폰 번호" v-model="salesForm.customerMobile">
 
           <label for="주소">주소</label>
-          <input type="text" id="주소" placeholder="주소">
-          <input type="text" id="상세주소" placeholder="상세주소">
+          <input type="text" id="주소" placeholder="주소" v-model="salesForm.customerAddress">
+          <input type="text" id="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
         </fieldset>
       </form>
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill">등록하기</button>
+        <button type="button" class="btn-fill" @click="addSales">등록하기</button>
       </template>
     </Footer>
   </div>
 </template>
 
 <script>
+import {
+  // authService,
+  dbService
+} from '@/plugins/fbase'
+
 export default {
-  name: 'SalesCreate'
+  name: 'SalesCreate',
+  data () {
+    return {
+      salesForm: {
+        appleCount: '',
+        customerName: '',
+        customerMobile: '',
+        customerAddress: '',
+        customerAddressDetail: ''
+      }
+      // salesForm: {
+      //   appleCount: '16',
+      //   customerName: '김고객',
+      //   customerPhoneNumber: '010-2222-3333',
+      //   customerAddress: '서울 강남구 내맘대로 486길',
+      //   customerAddressDetail: '123-456'
+      // }
+    }
+  },
+  methods: {
+    async addSales () {
+      await dbService.collection('apple').add(
+        this.salesForm
+      )
+    }
+  }
 }
 </script>
 

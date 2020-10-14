@@ -2,6 +2,7 @@
   <div id="login">
     <form action="" @submit.prevent>
       <button type="button" @click="socialLogin('google')">GOOGLE</button>
+      <router-link tag="button" :to="{ name: 'Sales' }">SALES</router-link>
     </form>
   </div>
 </template>

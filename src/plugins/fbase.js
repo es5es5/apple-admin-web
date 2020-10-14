@@ -3,7 +3,6 @@ import 'firebase/auth'
 import 'firebase/firestore'
 import 'firebase/storage'
 
-console.log(process.env)
 const firebaseConfig = {
   apiKey: process.env.VUE_APP_API_KEY,
   authDomain: process.env.VUE_APP_AUTH_DOMAIN,

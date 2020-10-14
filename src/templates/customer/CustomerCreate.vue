@@ -21,15 +21,21 @@
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill">등록하기</button>
+        <button type="button" class="btn-fill" @click="addCustomer">등록하기</button>
       </template>
     </Footer>
   </div>
 </template>
 
 <script>
+// import { dbService, authService } from '@/plugins/fbase'
+
 export default {
-  name: 'SalesCreate'
+  name: 'SalesCreate',
+  methods: {
+    addCustomer () {
+    }
+  }
 }
 </script>
 
