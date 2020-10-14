@@ -16,12 +16,15 @@
           <label for="주소">주소</label>
           <input type="text" id="주소" placeholder="주소" v-model="salesForm.customerAddress">
           <input type="text" id="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
+
+          <label for="가격">가격</label>
+          <input type="text" id="가격" placeholder="가격" v-model="salesForm.price">
         </fieldset>
       </form>
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill" @click="addSales">등록하기</button>
+        <button type="button" class="btn-fill" @click="createSales">등록하기</button>
       </template>
     </Footer>
   </div>
@@ -37,25 +40,29 @@ export default {
   name: 'SalesCreate',
   data () {
     return {
-      salesForm: {
-        appleCount: '',
-        customerName: '',
-        customerMobile: '',
-        customerAddress: '',
-        customerAddressDetail: ''
-      }
       // salesForm: {
-      //   appleCount: '16',
-      //   customerName: '김고객',
-      //   customerPhoneNumber: '010-2222-3333',
-      //   customerAddress: '서울 강남구 내맘대로 486길',
-      //   customerAddressDetail: '123-456'
+      //   appleCount: '',
+      //   customerName: '',
+      //   customerMobile: '',
+      //   customerAddress: '',
+      //   customerAddressDetail: '',
+      //   createtime: Date.now(),
+      //   price: ''
       // }
+      salesForm: {
+        appleCount: '16',
+        customerName: '김고객',
+        customerMobile: '010-2222-3333',
+        customerAddress: '서울 강남구 내맘대로 486길',
+        customerAddressDetail: '123-456',
+        createtime: Date.now(),
+        price: '50000'
+      }
     }
   },
   methods: {
-    async addSales () {
-      await dbService.collection('apple').add(
+    async createSales () {
+      await dbService.collection('sales').add(
         this.salesForm
       )
     }

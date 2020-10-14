@@ -2,21 +2,21 @@
   <div>
     <div>
       <ul class="sales_wrap">
-        <li class="sales-item" v-for="index in 10" :key="index">
+        <li class="sales-item" v-for="(item, index) in salesList" :key="index">
           <div class="row">
             <div class="grid grid-1">
-              <h3 class="title">충주사과 15</h3>
-              <span class="customerName">김고객</span><span class="customerMobile">010-5555-4444</span>
-              <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p>
-              <p class="customerAddress">서울시 강남구 마음대로 486길</p>
-              <p class="customerAddressDetail">301동 1024호</p>
-              <p class="createtime">2020-10-12 15:44</p>
-              <p class="price">255,000</p>
+              <h3 class="title">{{ item.appleCount }}</h3>
+              <span class="customerName">{{ item.customerName }}</span><span class="customerMobile">{{ item.customerMobile }}</span>
+              <!-- <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p> -->
+              <p class="customerAddress">{{ item.customerAddress }}</p>
+              <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
+              <p class="createtime">{{ item.createtime }}</p>
+              <p class="price">{{ item.price }}</p>
             </div>
           </div>
         </li>
       </ul>
-      <Footer model="Apple">
+      <Footer>
         <template v-slot:button>
           <button type="button" class="btn-fill" @click="goCreate">등록하기</button>
         </template>
@@ -26,11 +26,30 @@
 </template>
 
 <script>
+import {
+  // authService,
+  dbService
+} from '@/plugins/fbase'
+
 export default {
   name: 'SalesList',
   created () {
+    this.getSalesList()
+  },
+  data () {
+    return {
+      salesList: []
+    }
   },
   methods: {
+    async getSalesList () {
+      dbService.collection('sales').onSnapshot(snapshot => {
+        this.salesList = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }))
+      })
+    },
     goCreate () {
       this.$router.push({
         name: 'SalesCreate'
