@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <ul class="apple_wrap">
-        <li class="apple-item" v-for="index in 20" :key="index">
+      <ul class="customer_wrap">
+        <li class="customer-item" v-for="index in 20" :key="index">
           <p class="customerName">김고객</p>
           <p class="customerMobile">010-2222-3333</p>
         </li>
@@ -32,19 +32,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.apple_wrap {
-  @media (max-width: 1200px) { width: 100%; }
-  @media (min-width: 1200px) {
-    width: 1200px;
-    .apple-item {
+.customer_wrap {
+  @media (max-width: 900px) { width: 100%; }
+  @media (min-width: 900px) {
+    margin: 0 auto;
+    width: 900px;
+
+    .customer-item {
       opacity: .7;
+
       &:hover {
         opacity: 1;
+        cursor: pointer;
       }
     }
   }
 
-  .apple-item {
+  .customer-item {
     margin: .5rem 0;
     padding: 1rem;
     border-bottom: 1px solid $border;

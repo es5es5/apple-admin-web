@@ -20,8 +20,7 @@ export default {
   left: 0;
   right: 0;
   z-index: 5000;
-  background-color: $background;
-  border-top: 1px solid $border;
+  background-color: transparent;
 
   &.scrolling { background-color: #fff; }
 }
@@ -42,6 +41,6 @@ export default {
   font-family: SingleDay;
   font-weight: bold;
   letter-spacing: .25rem;
-  border-radius: .5rem .5rem 0 0;
+  border-radius: 1rem 1rem 0 0;
 }
 </style>

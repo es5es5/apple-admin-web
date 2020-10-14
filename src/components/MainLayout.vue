@@ -21,5 +21,6 @@ export default {
 <style lang="scss" scoped>
 .main {
   padding: 3.5rem .5rem;
+  margin: 0 auto;
 }
 </style>

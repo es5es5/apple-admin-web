@@ -4,16 +4,21 @@
       <ul class="sales_wrap">
         <li class="sales-item" v-for="(item, index) in salesList" :key="index">
           <div class="row">
-            <div class="grid grid-1">
-              <h3 class="title">{{ item.appleCount }}</h3>
-              <span class="customerName">{{ item.customerName }}</span><span class="customerMobile">{{ item.customerMobile }}</span>
-              <!-- <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p> -->
-              <p class="customerAddress">{{ item.customerAddress }}</p>
-              <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
-              <p class="createtime">{{ item.createtime }}</p>
-              <p class="price">{{ item.price }}</p>
+            <div class="grid grid-1-4 empty">
+              <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
+                <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
+              </div>
+            </div>
+            <div class="grid grid-3-4">
+              <p class="customerName">{{ item.customerName }} <span class="customerMobile">{{ item.customerMobile }}</span></p>
             </div>
           </div>
+          <!-- <h3 class="title">{{ item.appleCount }}</h3> -->
+          <!-- <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p> -->
+          <p class="customerAddress">{{ item.customerAddress }}</p>
+          <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
+          <p class="createtime">{{ item.createtime }}</p>
+          <p class="price">{{ item.price }}</p>
         </li>
       </ul>
       <Footer>
@@ -61,13 +66,17 @@ export default {
 
 <style lang="scss" scoped>
 .sales_wrap {
-  @media (max-width: 1200px) { width: 100%; }
-  @media (min-width: 1200px) {
-    width: 1200px;
+  @media (max-width: 900px) { width: 100%; }
+  @media (min-width: 900px) {
+    margin: 0 auto;
+    width: 900px;
+
     .sales-item {
       opacity: .7;
+
       &:hover {
         opacity: 1;
+        cursor: pointer;
       }
     }
   }
@@ -80,12 +89,21 @@ export default {
     background-color: $background;
     border-radius: .5rem;
 
-    .title {
-      margin-bottom: .5rem;
-      vertical-align: middle;
-      font-size: 2rem;
-      font-weight: bold;
-      color: $primary;
+    .apple_wrap {
+      position: relative;
+      display: inline-block;
+      width: 3.5rem;
+    }
+
+    .apple_wrap::after {
+      position: absolute;
+      font-size: 1.5rem;
+      left: 1.66rem;
+      top: 2.1rem;
+      transform: translate(-50%, -50%);
+      content: attr(data-appleCount);
+      pointer-events: none;
+      font-weight: bolder;
     }
 
     .price {
@@ -97,17 +115,18 @@ export default {
 
     .customerName {
       margin-right: .5rem;
-      font-size: 1.1rem;
+      line-height: 3.5rem;
+      font-size: 1.3rem;
       color: $success;
       font-weight: bold;
-      vertical-align: middle;
     }
+
     .customerMobile {
       font-size: 1.1rem;
-      color: $success;
+      color: #000;
       font-weight: bold;
-      vertical-align: middle;
     }
+
     .customerBank {
       margin-top: .5rem;
     }
@@ -117,6 +136,12 @@ export default {
       margin-top: .5rem;
     }
     .customerAddressDetail {}
+
+    .createtime {
+      line-height: 1rem;
+      font-size: .8rem;
+      color: $gray;
+    }
   }
 }
 </style>
