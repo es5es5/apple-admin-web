@@ -18,7 +18,7 @@
           <input type="text" id="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
 
           <label for="가격">가격</label>
-          <input type="text" id="가격" placeholder="가격" v-model="salesForm.price">
+          <input type="text" id="가격" placeholder="가격" :value="salesForm.price | numberWithComma" @input="salesForm.price = $getComma($event.target)">
         </fieldset>
       </form>
     </div>
@@ -40,28 +40,29 @@ export default {
   name: 'SalesCreate',
   data () {
     return {
-      // salesForm: {
-      //   appleCount: '',
-      //   customerName: '',
-      //   customerMobile: '',
-      //   customerAddress: '',
-      //   customerAddressDetail: '',
-      //   createtime: Date.now(),
-      //   price: ''
-      // }
       salesForm: {
-        appleCount: '16',
-        customerName: '김고객',
-        customerMobile: '010-2222-3333',
-        customerAddress: '서울 강남구 내맘대로 486길',
-        customerAddressDetail: '123-456',
+        appleCount: '',
+        customerName: '',
+        customerMobile: '',
+        customerAddress: '',
+        customerAddressDetail: '',
         createtime: Date.now(),
-        price: '50000'
+        price: ''
       }
+      // salesForm: {
+      //   appleCount: '16',
+      //   customerName: '김고객',
+      //   customerMobile: '010-2222-3333',
+      //   customerAddress: '서울 강남구 내맘대로 486길',
+      //   customerAddressDetail: '123-456',
+      //   createtime: Date.now(),
+      //   price: '50000'
+      // }
     }
   },
   methods: {
     async createSales () {
+      this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
       await dbService.collection('sales').add(
         this.salesForm
       )

@@ -10,15 +10,14 @@
               </div>
             </div>
             <div class="grid grid-3-4">
-              <p class="customerName">{{ item.customerName }} <span class="customerMobile">{{ item.customerMobile }}</span></p>
+              <p class="customerName">{{ item.customerName }}</p>
+              <p class="customerMobile">{{ item.customerMobile }}</p>
             </div>
           </div>
-          <!-- <h3 class="title">{{ item.appleCount }}</h3> -->
-          <!-- <p class="customerBank">신한 <span class="customerAccount">110-555-9994444</span></p> -->
           <p class="customerAddress">{{ item.customerAddress }}</p>
           <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
-          <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd EEE') }}</p>
-          <p class="price">{{ item.price | numberWithComma }}</p>
+          <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}</p>
+          <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
         </li>
       </ul>
       <Footer>
@@ -47,12 +46,19 @@ export default {
   },
   methods: {
     async getSalesList () {
-      dbService.collection('sales').onSnapshot(snapshot => {
-        this.salesList = snapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        }))
-      })
+    //   let tweets =
+    //   await dbService.collection('tweets')
+    //  .where('writerId', '==', this.props.userObj.uid)
+    //  .orderBy('createtime', 'desc')
+    //  .get()
+      dbService.collection('sales')
+        .orderBy('createtime', 'desc')
+        .onSnapshot(snapshot => {
+          this.salesList = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+        })
     },
     goCreate () {
       this.$router.push({
@@ -81,6 +87,7 @@ export default {
   }
 
   .sales-item {
+    position: relative;
     margin: .5rem 0;
     padding: 1rem;
     border-bottom: 1px solid $border;
@@ -106,35 +113,41 @@ export default {
     }
 
     .price {
-      float: right;
-      margin-top: -2rem;
-      font-size: 1.5rem;
+      position: absolute;
+      bottom: 1rem;
+      right: 1rem;
+      font-size: 1.2rem;
       font-weight: 800;
+
+      .won {
+        margin-left: .1rem;
+        font-size: .5rem;
+        font-weight: 400;
+        color: $gray;
+      }
     }
 
     .customerName {
       margin-right: .5rem;
-      line-height: 3.5rem;
+      line-height: 2;
       font-size: 1.3rem;
       color: $success;
       font-weight: bold;
     }
 
     .customerMobile {
-      font-size: 1.1rem;
-      color: #000;
-      font-weight: bold;
+      line-height: 0;
+      font-size: .9rem;
+      color: $gray;
     }
 
     .customerBank {
       margin-top: .5rem;
     }
-    .customerAccount {}
 
     .customerAddress {
       margin-top: .5rem;
     }
-    .customerAddressDetail {}
 
     .createtime {
       line-height: 1rem;
