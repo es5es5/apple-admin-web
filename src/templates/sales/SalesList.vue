@@ -2,27 +2,29 @@
   <div>
     <div>
       <ul class="sales_wrap">
-        <li class="sales-item" v-for="(item, index) in salesList" :key="index">
-          <div class="row">
-            <div class="grid grid-1-4 empty">
-              <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
-                <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
+        <transition name="fade" mode="out-in" v-for="(item, index) in salesList" :key="index">
+          <li class="sales-item">
+            <div class="row">
+              <div class="grid grid-1-4 empty">
+                <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
+                  <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
+                </div>
+              </div>
+              <div class="grid grid-3-4">
+                <p class="customerName">{{ item.customerName }}</p>
+                <p class="customerMobile">{{ item.customerMobile }}</p>
               </div>
             </div>
-            <div class="grid grid-3-4">
-              <p class="customerName">{{ item.customerName }}</p>
-              <p class="customerMobile">{{ item.customerMobile }}</p>
-            </div>
-          </div>
-          <p class="customerAddress">{{ item.customerAddress }}</p>
-          <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
-          <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}</p>
-          <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
+            <p class="customerAddress">{{ item.customerAddress }}</p>
+            <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
+            <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}</p>
+            <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 
-          <span class="delete" @click="deleteSales(item.id)">❌</span>
-          <!-- <img src="@/assets/images/delete.svg" alt="delete" class="delete"> -->
-        </li>
+            <span class="delete" @click="deleteSales(item.id)">❌</span>
+          </li>
+        </transition>
       </ul>
+
       <Footer>
         <template v-slot:button>
           <button type="button" class="btn-fill" @click="goCreate">등록하기</button>

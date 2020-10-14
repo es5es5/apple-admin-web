@@ -12,3 +12,10 @@
 @import '@/assets/scss/form.scss';
 @import '@/assets/scss/button.scss';
 </style>
+
+<style lang="scss">
+.fade-enter-active,
+.fade-leave-active { transition: opacity .1s }
+.fade-enter,
+.fade-leave-to { opacity: 0 }
+</style>
