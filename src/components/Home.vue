@@ -4,9 +4,9 @@
     <main class="main">
       <h3 class="greeting">안녕하세요! <span class="userName">관리자님</span></h3>
       <ul class="nav_wrap">
-        <router-link tag="li" class="nav-item apple" :to="{ name: 'Apple' }">
+        <router-link tag="li" class="nav-item apple" :to="{ name: 'Sales' }">
           <img src="@/assets/images/apple-normal.svg" class="nav-image" alt="apple">
-          <p class="nav-title">사과 관리</p>
+          <p class="nav-title">판매 관리</p>
         </router-link>
         <router-link tag="li" class="nav-item customer" :to="{ name: 'Customer' }">
           <img src="@/assets/images/customer.svg" class="nav-image" alt="apple">

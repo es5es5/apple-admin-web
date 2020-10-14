@@ -19,13 +19,17 @@
         </fieldset>
       </form>
     </div>
-    <FooterCreate model="Apple" />
+    <Footer>
+      <template v-slot:button>
+        <button type="button" class="btn-fill">등록하기</button>
+      </template>
+    </Footer>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppleCreate'
+  name: 'SalesCreate'
 }
 </script>
 

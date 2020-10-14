@@ -1,5 +1,5 @@
 export default {
   install (Vue) {
-    Vue.component('FooterCreate', () => import('./FooterCreate'))
+    Vue.component('Footer', () => import('./Footer'))
   }
 }

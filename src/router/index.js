@@ -18,22 +18,36 @@ const routes = [
   {
     path: '/main',
     name: 'Main',
-    redirect: '/main/apple',
+    redirect: '/main/sales',
     component: MainLayout,
     children: [{
-      path: 'apple',
-      name: 'Apple',
+      path: 'sales',
+      name: 'Sales',
       meta: {
-        title: '사과'
+        title: '판매'
       },
-      component: () => import('@/templates/apple/AppleList')
+      component: () => import('@/templates/sales/SalesList')
     }, {
-      path: 'apple/create',
-      name: 'AppleCreate',
+      path: 'sales/create',
+      name: 'SalesCreate',
       meta: {
-        title: '사과 등록'
+        title: '판매 등록'
       },
-      component: () => import('@/templates/apple/AppleCreate')
+      component: () => import('@/templates/sales/SalesCreate')
+    }, {
+      path: 'customer',
+      name: 'Customer',
+      meta: {
+        title: '고객'
+      },
+      component: () => import('@/templates/customer/CustomerList')
+    }, {
+      path: 'customer/create',
+      name: 'CustomerCreate',
+      meta: {
+        title: '고객 등록'
+      },
+      component: () => import('@/templates/customer/CustomerCreate')
     }, {
       path: 'customer',
       name: 'Customer',

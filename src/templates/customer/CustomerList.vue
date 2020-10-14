@@ -7,15 +7,26 @@
           <p class="customerMobile">010-2222-3333</p>
         </li>
       </ul>
-      <FooterCreate model="Customer" />
+      <Footer model="Customer">
+        <template v-slot:button>
+          <button type="button" class="btn-fill" @click="goCreate">등록하기</button>
+        </template>
+      </Footer>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppleList',
+  name: 'CustomerList',
   components: {
+  },
+  methods: {
+    goCreate () {
+      this.$router.push({
+        name: 'CustomerCreate'
+      })
+    }
   }
 }
 </script>

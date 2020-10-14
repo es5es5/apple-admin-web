@@ -1,8 +1,8 @@
 <template>
   <div>
     <div>
-      <ul class="apple_wrap">
-        <li class="apple-item" v-for="index in 10" :key="index">
+      <ul class="sales_wrap">
+        <li class="sales-item" v-for="index in 10" :key="index">
           <div class="row">
             <div class="grid grid-1">
               <h3 class="title">충주사과 15</h3>
@@ -16,25 +16,36 @@
           </div>
         </li>
       </ul>
-      <FooterCreate model="Apple" />
+      <Footer model="Apple">
+        <template v-slot:button>
+          <button type="button" class="btn-fill" @click="goCreate">등록하기</button>
+        </template>
+      </Footer>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AppleList',
+  name: 'SalesList',
   created () {
+  },
+  methods: {
+    goCreate () {
+      this.$router.push({
+        name: 'SalesCreate'
+      })
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.apple_wrap {
+.sales_wrap {
   @media (max-width: 1200px) { width: 100%; }
   @media (min-width: 1200px) {
     width: 1200px;
-    .apple-item {
+    .sales-item {
       opacity: .7;
       &:hover {
         opacity: 1;
@@ -42,7 +53,7 @@ export default {
     }
   }
 
-  .apple-item {
+  .sales-item {
     margin: .5rem 0;
     padding: 1rem;
     border-bottom: 1px solid $border;
