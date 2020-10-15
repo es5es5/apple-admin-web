@@ -6,7 +6,7 @@ import 'vue-toastification/dist/index.css'
 const ToastOptions = {
   // transition: 'Vue-Toastification__bounce',
   // transition: 'Vue-Toastification__fade',
-  transition: 'my-custom-fade',
+  // transition: 'my-custom-fade',
   maxToasts: 1,
   newestOnTop: true
 }

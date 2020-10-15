@@ -54,6 +54,8 @@
       &::after {
         content: '✔️';
         font-size: .5rem;
+        line-height: 1;
+        vertical-align: top;
       }
     }
 
