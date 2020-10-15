@@ -1,5 +1,5 @@
 @charset 'utf-8';
-#app #header .header_wrap {
+#app #header .header_wrap .slider {
   .bm-burger-button {
     position: fixed;
     width: 2rem;
@@ -44,7 +44,7 @@
     left: 0;
     background-color: rgb(63, 63, 65); /* Black*/
     overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 3rem; /* Place content 60px from the top */
+    padding-top: 5rem; /* Place content 60px from the top */
     transition: .5s; /*0.5 second transition effect to slide in the sidenav*/
   }
 
@@ -53,15 +53,25 @@
   }
   .bm-item-list {
     color: #b8b7ad;
-    margin-left: 10%;
     font-size: 1.25rem;
+    margin-left: 1rem;
   }
   .bm-item-list > * {
     display: flex;
     text-decoration: none;
   }
-  .bm-item-list > * > span, p {
+  .bm-item-list > * {
     font-weight: 700;
     color: #fff;
+
+    &.router-link-exact-active {
+      color: $primary
+    }
+  }
+
+  .sliderIcon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: .5rem;
   }
 }

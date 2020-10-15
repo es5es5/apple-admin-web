@@ -4,8 +4,8 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click.stop @click="goBack">
-            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click.stop @click="goHome">
+            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goBack">
+            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
         <div class="grid grid-2-3">
@@ -13,20 +13,27 @@
         </div>
         <div class="grid grid-1-6">
           <Slide
+            :isOpen="slideIsOpen"
+            @openMenu="openMenu"
+            @closeMenu="closeMenu"
             right
             :width="_width"
             noOverlay
+            class="slider"
           >
-            <a id="home" href="#">
-              <p>Home</p>
-            </a>
-            <a id="home" href="#">
-              <p>Home</p>
-            </a>
+            <li @click="goSlideRouter('Home')">
+              <img src="@/assets/images/apple-normal.svg" alt="" class="sliderIcon">
+              HOME
+            </li>
+            <li @click="goSlideRouter('Sales')">
+              <img src="@/assets/images/sales.svg" alt="" class="sliderIcon">
+              판매 관리
+            </li>
+            <li @click="goSlideRouter('Customer')">
+              <img src="@/assets/images/customer.svg" alt="" class="sliderIcon">
+              고객 관리
+            </li>
           </Slide>
-          <!-- <div class="hamburger_wrap">
-            <img src="@/assets/images/hamburger.svg" class="hamburger" alt="hamburger">
-          </div> -->
         </div>
       </div>
     </div>
@@ -48,7 +55,8 @@ export default {
   },
   data () {
     return {
-      scrolling: false
+      scrolling: false,
+      slideIsOpen: false
     }
   },
   beforeMount () {
@@ -69,6 +77,12 @@ export default {
       this.$router.push({
         name: 'Home'
       })
+    },
+    openMenu () { this.slideIsOpen = true },
+    closeMenu () { this.slideIsOpen = false },
+    goSlideRouter (name) {
+      this.slideIsOpen = false
+      this.$router.push({ name })
     }
   }
 }
