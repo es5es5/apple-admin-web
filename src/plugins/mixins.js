@@ -2,6 +2,7 @@ export default {
   install (Vue) {
     Vue.mixin({
       computed: {
+        _id () { return this.$route.params.id },
         mixinRouteMetaTitle () { return this.$route.meta ? this.$route.meta.title || '충주 사과' : '충주 사과' },
         mixinUser () { return this.$store.getters.getUser }
       },

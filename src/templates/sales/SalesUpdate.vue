@@ -41,9 +41,6 @@ export default {
     this.getSales()
   },
   computed: {
-    _id () {
-      return this.$route.params.id
-    }
   },
   data () {
     return {

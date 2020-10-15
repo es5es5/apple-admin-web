@@ -17,7 +17,7 @@
     </div>
     <Footer>
       <template v-slot:button>
-        <button type="button" class="btn-fill primary" @click="createCustomer">등록하기</button>
+        <button type="button" class="btn-fill orange" @click="updateSales">수정하기</button>
       </template>
     </Footer>
   </div>
@@ -30,7 +30,12 @@ import {
 } from '@/plugins/fbase'
 
 export default {
-  name: 'CustomerCreate',
+  name: 'CustomerUpdate',
+  created () {
+    this.getCustomer()
+  },
+  computed: {
+  },
   data () {
     return {
       customerForm: {
@@ -52,15 +57,20 @@ export default {
     }
   },
   methods: {
-    async createCustomer () {
+    async getCustomer () {
+      await dbService.collection('customer').doc(this._id).get().then(doc => {
+        this.customerForm = doc.data()
+      })
+    },
+    async updateSales () {
       if (!await this.checkValidate()) return false
 
-      await dbService.collection('customer').add({
-        createtime: Date.now(),
-        ...this.customerForm
-      }).then(() => {
+      this.customerForm.updatetime = Date.now()
+      await dbService.doc(`customer/${this._id}`).update(
+        this.customerForm
+      ).then(() => {
         this.$toast.success(
-          '고객이 등록되었습니다',
+          '고객이 수정되었습니다',
           this.ToastSettings
         )
       })

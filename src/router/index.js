@@ -56,12 +56,12 @@ const routes = [
       },
       component: () => import('@/templates/customer/CustomerCreate')
     }, {
-      path: 'customer',
-      name: 'Customer',
+      path: 'customer/:id',
+      name: 'CustomerUpdate',
       meta: {
-        title: '고객'
+        title: '고객 수정'
       },
-      component: () => import('@/templates/customer/CustomerList')
+      component: () => import('@/templates/customer/CustomerUpdate')
     }]
   },
   {

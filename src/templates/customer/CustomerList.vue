@@ -2,9 +2,11 @@
   <div>
     <div>
       <ul class="customer_wrap">
-        <li class="customer-item" v-for="index in 20" :key="index">
-          <p class="customerName">김고객</p>
-          <p class="customerMobile">010-2222-3333</p>
+        <li class="customer-item" v-for="(item, index) in customerList" :key="index" @click="goUpdate(item.id)">
+          <p class="customerName">{{ item.customerName }}</p>
+          <p class="customerMobile">{{ item.customerMobile }}</p>
+
+          <span class="delete" @click="deleteCustomer(item.id)" @click.stop>❌</span>
         </li>
       </ul>
       <Footer model="Customer">
@@ -17,14 +19,52 @@
 </template>
 
 <script>
+import {
+  // authService,
+  dbService
+} from '@/plugins/fbase'
+
 export default {
   name: 'CustomerList',
-  components: {
+  created () {
+    this.getCustomerList()
+  },
+  data () {
+    return {
+      customerList: []
+    }
   },
   methods: {
+    async deleteCustomer (id) {
+      const ok = window.confirm('정말 삭제하시겠습니까?')
+      if (ok) {
+        await dbService.doc(`customer/${id}`).delete().then(() => {
+          this.$toast.success(
+            '고객이 삭제되었습니다',
+            this.ToastSettings
+          )
+        })
+      }
+    },
+    async getCustomerList () {
+      dbService.collection('customer')
+        .orderBy('createtime', 'desc')
+        .onSnapshot(snapshot => {
+          this.customerList = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+          }))
+        })
+    },
     goCreate () {
       this.$router.push({
         name: 'CustomerCreate'
+      })
+    },
+    goUpdate (id) {
+      this.$router.push({
+        name: 'CustomerUpdate',
+        params: { id }
       })
     }
   }
@@ -49,9 +89,11 @@ export default {
   }
 
   .customer-item {
+    position: relative;
     margin: .5rem 0;
     padding: 1rem;
-    border-bottom: 1px solid $border;
+    border-right: 3px solid $border;
+    border-bottom: 3px solid $border;
     &:last-child { border-bottom: transparent; }
     background-color: $background;
     border-radius: .5rem;
@@ -90,6 +132,16 @@ export default {
       margin-top: .5rem;
     }
     .customerAddressDetail {}
+
+    .delete {
+      position: absolute;
+      text-align: center;
+      top: .5rem;
+      right: .5rem;
+      padding: .5rem;
+      font-size: 1rem;
+      color: $error;
+    }
   }
 }
 </style>

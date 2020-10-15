@@ -90,9 +90,7 @@ export default {
     goUpdate (id) {
       this.$router.push({
         name: 'SalesUpdate',
-        params: {
-          id
-        }
+        params: { id }
       })
     }
   }
@@ -120,7 +118,8 @@ export default {
     position: relative;
     margin: .5rem 0;
     padding: 1rem 1rem 2.5rem 1rem;
-    border-bottom: 1px solid $border;
+    border-right: 3px solid $border;
+    border-bottom: 3px solid $border;
     &:last-child { border-bottom: transparent; }
     background-color: $background;
     border-radius: .5rem;
