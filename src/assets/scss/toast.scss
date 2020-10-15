@@ -1,0 +1,13 @@
+@charset 'utf-8';
+
+.Vue-Toastification__container .Vue-Toastification__toast--success { background-color: $success; }
+.Vue-Toastification__container .Vue-Toastification__toast--warning { background-color: $warning; }
+.Vue-Toastification__container .Vue-Toastification__toast--error { background-color: $error; }
+
+.Vue-Toastification__container {
+  opacity: .9;
+  padding: 5rem 1rem !important;
+}
+.Vue-Toastification__toast {
+  border-radius: 1rem !important;
+}

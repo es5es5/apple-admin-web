@@ -30,7 +30,7 @@
             </p>
             <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 
-            <span class="delete" @click="deleteSales(item.id)">❌</span>
+            <span class="delete" @click="deleteSales(item.id)" @click.stop>❌</span>
           </li>
         </transition>
       </ul>
@@ -64,15 +64,15 @@ export default {
     async deleteSales (id) {
       const ok = window.confirm('정말 삭제하시겠습니까?')
       if (ok) {
-        await dbService.doc(`sales/${id}`).delete()
+        await dbService.doc(`sales/${id}`).delete().then(() => {
+          this.$toast.success(
+            '판매가 삭제되었습니다',
+            this.ToastSettings
+          )
+        })
       }
     },
     async getSalesList () {
-    //   let tweets =
-    //   await dbService.collection('tweets')
-    //  .where('writerId', '==', this.props.userObj.uid)
-    //  .orderBy('createtime', 'desc')
-    //  .get()
       dbService.collection('sales')
         .orderBy('createtime', 'desc')
         .onSnapshot(snapshot => {

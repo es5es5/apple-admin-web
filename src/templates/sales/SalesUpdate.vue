@@ -77,7 +77,12 @@ export default {
       this.salesForm.price = this.salesForm.price ? this.salesForm.price.toString().replace(/,/g, '') : ''
       await dbService.doc(`sales/${this._id}`).update(
         this.salesForm
-      )
+      ).then(() => {
+        this.$toast.success(
+          '판매가 수정되었습니다',
+          this.ToastSettings
+        )
+      })
       this.goBack()
     }
   }

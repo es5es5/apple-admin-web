@@ -65,7 +65,13 @@ export default {
       await dbService.collection('sales').add({
         createtime: Date.now(),
         ...this.salesForm
+      }).then(() => {
+        this.$toast.success(
+          '판매가 등록되었습니다',
+          this.ToastSettings
+        )
       })
+      this.goBack()
     }
   }
 }
