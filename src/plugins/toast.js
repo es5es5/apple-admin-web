@@ -12,8 +12,8 @@ const ToastOptions = {
 }
 
 const ToastSettings = {
-  position: 'top-center',
-  timeout: 500,
+  position: 'top-right',
+  timeout: 1000,
   closeOnClick: true,
   pauseOnFocusLoss: true,
   pauseOnHover: true,
