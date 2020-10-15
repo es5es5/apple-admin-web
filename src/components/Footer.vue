@@ -19,7 +19,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 5000;
+  z-index: 1;
   background-color: transparent;
 
   &.scrolling { background-color: #fff; }

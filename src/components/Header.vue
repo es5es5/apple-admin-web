@@ -4,17 +4,29 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goBack">
-            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click.stop @click="goBack">
+            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click.stop @click="goHome">
           </div>
         </div>
         <div class="grid grid-2-3">
           <h1 class="header-title">{{ mixinRouteMetaTitle }}</h1>
         </div>
         <div class="grid grid-1-6">
-          <div class="hamburger_wrap">
+          <Slide
+            right
+            :width="_width"
+            noOverlay
+          >
+            <a id="home" href="#">
+              <p>Home</p>
+            </a>
+            <a id="home" href="#">
+              <p>Home</p>
+            </a>
+          </Slide>
+          <!-- <div class="hamburger_wrap">
             <img src="@/assets/images/hamburger.svg" class="hamburger" alt="hamburger">
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -22,9 +34,17 @@
 </template>
 
 <script>
+import { Slide } from 'vue-burger-menu'
+
 export default {
   name: 'Header',
   components: {
+    Slide
+  },
+  computed: {
+    _width () {
+      return window.innerWidth.toString()
+    }
   },
   data () {
     return {
@@ -60,7 +80,7 @@ export default {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 5000;
+  z-index: 999;
   transition: all .5s;
   background-color: rgba($success, .8);
   border-bottom: 2px solid rgba($success, .3);

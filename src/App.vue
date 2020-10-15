@@ -15,9 +15,8 @@
 @import '@/assets/scss/form.scss';
 @import '@/assets/scss/button.scss';
 @import '@/assets/scss/toast.scss';
-</style>
+@import '@/assets/scss/slider.scss';
 
-<style lang="scss">
 .fade-enter-active,
 .fade-leave-active { transition: opacity .1s }
 .fade-enter,
