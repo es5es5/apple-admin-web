@@ -15,9 +15,19 @@
                 <p class="customerMobile">{{ item.customerMobile }}</p>
               </div>
             </div>
-            <p class="customerAddress">{{ item.customerAddress }}</p>
-            <p class="customerAddressDetail">{{ item.customerAddressDetail }}</p>
-            <p class="createtime">{{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}</p>
+
+            <p class="customerAddress">
+              <span class="info">주소</span>
+              {{ item.customerAddress }}
+            </p>
+            <p class="customerAddressDetail">
+              <span class="info">상세주소</span>
+              {{ item.customerAddressDetail }}
+            </p>
+            <p class="createtime">
+              <span class="info">등록날짜</span>
+              {{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}
+            </p>
             <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 
             <span class="delete" @click="deleteSales(item.id)">❌</span>
@@ -109,7 +119,7 @@ export default {
   .sales-item {
     position: relative;
     margin: .5rem 0;
-    padding: 1rem;
+    padding: 1rem 1rem 2.5rem 1rem;
     border-bottom: 1px solid $border;
     &:last-child { border-bottom: transparent; }
     background-color: $background;
@@ -176,10 +186,23 @@ export default {
 
     .customerAddress {
     }
+    .customerAddressDetail {
+      font-size: .9rem;
+    }
 
     .createtime {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
       line-height: 1rem;
       font-size: .8rem;
+      // color: $gray;
+    }
+
+    .info {
+      display: inline-block;
+      width: 2.5rem;
+      font-size: .5rem;
       color: $gray;
     }
   }
