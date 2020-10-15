@@ -4,7 +4,7 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goBack">
             <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
@@ -67,7 +67,7 @@ export default {
 
   &.scrolling {
     color: $primary;
-    background-color: $background;
+    background-color: rgba($background, .9);
   }
 }
 
@@ -88,18 +88,16 @@ export default {
 }
 
 .logo_wrap {
+  text-align: center;
 }
 
 .hamburger_wrap {
-  padding: 0 .5rem;
-  text-align: right;
+  text-align: center;
 }
 
 .apple_logo {
   line-height: 1;
-  padding: 0 1rem 0 .5rem;
   height: 2rem;
-  border-right: 1px solid rgba($border, .5);
 
   &:hover {
     cursor: pointer;

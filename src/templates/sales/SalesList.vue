@@ -117,7 +117,7 @@ export default {
   .sales-item {
     position: relative;
     margin: .5rem 0;
-    padding: 1rem 1rem 2.5rem 1rem;
+    padding: 1rem 1rem 3rem 1rem;
     border-right: 3px solid $border;
     border-bottom: 3px solid $border;
     &:last-child { border-bottom: transparent; }
