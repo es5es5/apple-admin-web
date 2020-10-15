@@ -3,7 +3,6 @@
     <div class="form_wrap">
       <form class="form" action="" @submit.prevent>
         <fieldset class="row-05">
-          <!-- <legend>사과 등록</legend> -->
           <label for="사과">사과</label>
           <input type="number" id="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" required>
 
@@ -11,7 +10,7 @@
           <input type="text" id="고객" placeholder="고객명" v-model="salesForm.customerName">
 
           <label for="핸드폰">핸드폰 번호</label>
-          <input type="text" id="핸드폰" placeholder="핸드폰 번호" v-model="salesForm.customerMobile">
+          <input type="text" id="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
 
           <label for="주소">주소</label>
           <input type="text" id="주소" placeholder="주소" v-model="salesForm.customerAddress">
@@ -54,7 +53,6 @@ export default {
         customerMobile: '',
         customerAddress: '',
         customerAddressDetail: '',
-        createtime: Date.now(),
         price: ''
       }
       // salesForm: {
@@ -76,7 +74,7 @@ export default {
     },
     async updateSales () {
       this.salesForm.updatetime = Date.now()
-      this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
+      this.salesForm.price = this.salesForm.price ? this.salesForm.price.toString().replace(/,/g, '') : ''
       await dbService.doc(`sales/${this._id}`).update(
         this.salesForm
       )

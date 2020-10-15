@@ -112,7 +112,7 @@ export default {
           }
 
           const result = value.toLocaleString('en').split('.')[0]
-          return result
+          return result.toString()
         },
         /**
          * 일 형식 하이픈포멧 (ex 19990101 -> 1999-01-01 )
