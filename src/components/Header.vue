@@ -4,7 +4,8 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/apple-home.svg" class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click="goHome">
           </div>
         </div>
         <div class="grid grid-2-3">
@@ -23,6 +24,8 @@
 <script>
 export default {
   name: 'Header',
+  components: {
+  },
   data () {
     return {
       scrolling: false

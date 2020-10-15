@@ -31,14 +31,16 @@ const routes = [
       path: 'sales/create',
       name: 'SalesCreate',
       meta: {
-        title: '판매 등록'
+        title: '판매 등록',
+        goBack: true
       },
       component: () => import('@/templates/sales/SalesCreate')
     }, {
       path: 'sales/:id',
       name: 'SalesUpdate',
       meta: {
-        title: '판매 수정'
+        title: '판매 수정',
+        goBack: true
       },
       component: () => import('@/templates/sales/SalesUpdate')
     }, {
@@ -52,14 +54,16 @@ const routes = [
       path: 'customer/create',
       name: 'CustomerCreate',
       meta: {
-        title: '고객 등록'
+        title: '고객 등록',
+        goBack: true
       },
       component: () => import('@/templates/customer/CustomerCreate')
     }, {
       path: 'customer/:id',
       name: 'CustomerUpdate',
       meta: {
-        title: '고객 수정'
+        title: '고객 수정',
+        goBack: true
       },
       component: () => import('@/templates/customer/CustomerUpdate')
     }]

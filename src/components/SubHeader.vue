@@ -1,5 +1,5 @@
 <template>
-  <div id="subHeader" :class="scrolling ? 'scrolling' : ''">
+  <div id="subHeader">
     <div class="header_wrap">
       <div class="row">
         <div class="grid grid-1-6">
@@ -22,7 +22,7 @@
 
 <script>
 export default {
-  name: 'Header',
+  name: 'SubHeader',
   data () {
     return {
       scrolling: false
