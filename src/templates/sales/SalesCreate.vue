@@ -3,21 +3,21 @@
     <div class="form_wrap">
       <form class="form" action="" @submit.prevent>
         <fieldset class="row-05">
-          <label for="사과">사과</label>
-          <input type="number" id="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" required>
+          <label for="사과" class="required" :class="{'error': errors.has('사과'), 'valid': fields['사과'] ? fields['사과'].valid : false}">사과</label>
+          <input type="number" id="사과" name="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" v-validate="'required'">
 
-          <label for="고객">고객</label>
-          <input type="text" id="고객" placeholder="고객명" v-model="salesForm.customerName">
+          <label for="고객" class="required" :class="{'error': errors.has('고객'), 'valid': fields['고객'] ? fields['고객'].valid : false}">고객</label>
+          <input type="text" id="고객" name="고객" placeholder="고객명" v-model="salesForm.customerName" v-validate="'required'">
 
           <label for="핸드폰">핸드폰 번호</label>
-          <input type="text" id="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
+          <input type="text" id="핸드폰" name="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
 
           <label for="주소">주소</label>
-          <input type="text" id="주소" placeholder="주소" v-model="salesForm.customerAddress">
-          <input type="text" id="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
+          <input type="text" id="주소" name="주소" placeholder="주소" v-model="salesForm.customerAddress">
+          <input type="text" id="상세주소" name="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
 
-          <label for="가격">가격</label>
-          <input type="text" id="가격" placeholder="가격" :value="salesForm.price | numberWithComma" @input="salesForm.price = $getComma($event.target)">
+          <label for="가격" class="required" :class="{'error': errors.has('가격'), 'valid': fields['가격'] ? fields['가격'].valid : false}">가격</label>
+          <input type="text" id="가격" name="가격" placeholder="가격" :value="salesForm.price | numberWithComma" @input="salesForm.price = $getComma($event.target)" v-validate="'required'">
         </fieldset>
       </form>
     </div>
@@ -61,6 +61,8 @@ export default {
   },
   methods: {
     async createSales () {
+      if (!await this.checkValidate()) return false
+
       this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
       await dbService.collection('sales').add({
         createtime: Date.now(),

@@ -39,6 +39,32 @@
     font-size: .8rem;
     display: block;
     margin-bottom: .25rem;
+
+    &.required {
+      &::after {
+        content: '*';
+        display: inline-block;
+        margin-left: .25rem;
+        color: $red;
+        // vertical-align: middle;
+      }
+    }
+
+    &.valid {
+      &::after {
+        content: '✔️';
+        font-size: .5rem;
+      }
+    }
+
+    &.error {
+      color: $error;
+
+      + input {
+        // position: relative;
+        border-color: $error;
+      }
+    }
   }
 
   .btn_address {

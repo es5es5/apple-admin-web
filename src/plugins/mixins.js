@@ -6,7 +6,25 @@ export default {
         mixinUser () { return this.$store.getters.getUser }
       },
       methods: {
+        isEmpty (value) {
+          if (value === '' || value === null || value === undefined || (value !== null && typeof value === 'object' && !Object.keys(value).length)) {
+            return true
+          } else {
+            return false
+          }
+        },
         goBack () { this.$router.go(-1) },
+        async checkValidate () {
+          if (!await this.$validator.validate()) {
+            this.$toast.error(
+              '필수 입력사항을 확인해주세요',
+              this.ToastSettings
+            )
+            return false
+          } else {
+            return true
+          }
+        },
         /**
          * 사업자번호 포맷
          */
