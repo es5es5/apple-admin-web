@@ -1,3 +1,8 @@
+import {
+  // authService,
+  dbService
+} from '@/plugins/fbase'
+
 export default {
   install (Vue) {
     Vue.mixin({
@@ -14,6 +19,23 @@ export default {
           } else {
             return false
           }
+        },
+        async checkCustomerMobileExist (customerMobile) {
+          let checkResult = null
+          await dbService
+            .collection('customer')
+            .where('customerMobile', '==', customerMobile)
+            .get()
+            .then(result => {
+              if (result.empty) {
+                checkResult = false
+              } else if (result.size > 0) {
+                const list = []
+                result.forEach(doc => list.push(doc.data()))
+                checkResult = list
+              }
+            })
+          return checkResult
         },
         goBack () { this.$router.go(-1) },
         async checkValidate () {

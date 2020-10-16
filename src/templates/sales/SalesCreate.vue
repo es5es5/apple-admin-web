@@ -35,6 +35,8 @@ import {
   dbService
 } from '@/plugins/fbase'
 
+console.log(dbService)
+
 export default {
   name: 'SalesCreate',
   data () {
@@ -62,8 +64,19 @@ export default {
   methods: {
     async createSales () {
       if (!await this.checkValidate()) return false
+      const existCustomer = await this.checkCustomerMobileExist(this.salesForm.customerMobile)
+      if (!existCustomer) {
+        await dbService.collection('customer').add({
+          createtime: Date.now(),
+          customerName: this.salesForm.customerName,
+          customerMobile: this.salesForm.customerMobile,
+          customerAddress: this.salesForm.customerAddress,
+          customerAddressDetail: this.salesForm.customerAddressDetail
+        })
+      }
 
       this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
+
       await dbService.collection('sales').add({
         createtime: Date.now(),
         ...this.salesForm
