@@ -13,7 +13,7 @@ export default {
      * 날짜 포맷 필터
      */
     Vue.filter('dateFormat', (value, format = 'yyyy-MM-dd') => {
-      if (!value) return '-'
+      if (!value || isNaN(value)) return '-'
       return DateTime.fromMillis(value).setLocale('ko').toFormat(format)
     })
   }

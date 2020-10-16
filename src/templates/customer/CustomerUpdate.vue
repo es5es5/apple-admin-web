@@ -15,6 +15,15 @@
         </fieldset>
       </form>
     </div>
+
+    <div class="sales_wrap">
+      <h3 class="title">[{{ this.customerForm.customerName }}] 판매 내역</h3>
+      <ul>
+        <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item.id)">
+          {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
+        </li>
+      </ul>
+    </div>
     <Footer>
       <template v-slot:button>
         <button type="button" class="btn-fill orange" @click="updateSales">수정하기</button>
@@ -38,6 +47,7 @@ export default {
   },
   data () {
     return {
+      salesList: [],
       customerForm: {
         customerName: '',
         customerMobile: '',
@@ -60,7 +70,20 @@ export default {
     async getCustomer () {
       await dbService.collection('customer').doc(this._id).get().then(doc => {
         this.customerForm = doc.data()
+        this.getSalesList()
       })
+    },
+    async getSalesList () {
+      dbService.collection('sales')
+        .where('customerMobile', '==', this.customerForm.customerMobile)
+        .orderBy('createtime', 'desc')
+        .get()
+        .then(result => {
+          result.forEach(doc => this.salesList.push({
+            id: doc.id,
+            ...doc.data()
+          }))
+        })
     },
     async updateSales () {
       if (!await this.checkValidate()) return false
@@ -75,11 +98,37 @@ export default {
         )
       })
       this.goBack()
+    },
+    goSalesUpdate (id) {
+      this.$router.push({
+        name: 'SalesUpdate',
+        params: { id }
+      })
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.sales_wrap {
+  margin-top: 1rem;
 
+  .title {
+    font-weight: bold;
+    color: $title;
+  }
+  .sales-item {
+    @include clearfix;
+    @include hover;
+    margin: .5rem;
+    padding: .5rem;
+    border: 1px solid $border;
+    border-radius: .5rem;
+
+    .createtime {
+      float: right;
+      color: $gray;
+    }
+  }
+}
 </style>
