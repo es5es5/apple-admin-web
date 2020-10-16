@@ -115,24 +115,24 @@ export default {
     }
 
     .customerName {
-      margin-right: .5rem;
       font-size: 1.2rem;
+      line-height: 2rem;
       color: $title;
       font-weight: bold;
     }
-    .customerMobile {
-      font-size: .9rem;
-      color: $gray;
-    }
-    .customerBank {
-      margin-top: .5rem;
-    }
-    .customerAccount {}
 
-    .customerAddress {
-      margin-top: .5rem;
+    .customerMobile {
+      display: inline-block;
+      background-color: $success;
+      padding: .25rem .5rem;
+      border-radius: .25rem;
+      font-size: .9rem;
+      color: #fff;
     }
-    .customerAddressDetail {}
+
+    .customerBank { margin-top: .5rem; }
+
+    .customerAddress { margin-top: .5rem; }
 
     .delete {
       position: absolute;

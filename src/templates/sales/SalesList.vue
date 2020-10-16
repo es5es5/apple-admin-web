@@ -171,24 +171,21 @@ export default {
 
     .customerName {
       margin-right: .5rem;
-      line-height: 2;
+      line-height: 2rem;
       font-size: 1.3rem;
-      color: $success;
       font-weight: bold;
     }
 
     .customerMobile {
-      display: block;
-      line-height: 0;
+      display: inline-block;
+      background-color: $success;
+      padding: .25rem .5rem;
+      border-radius: .25rem;
       font-size: .9rem;
-      color: $gray;
+      color: #fff;
     }
 
-    .customerAddress {
-    }
-    .customerAddressDetail {
-      font-size: .9rem;
-    }
+    .customerAddressDetail { font-size: .9rem; }
 
     .createtime {
       position: absolute;
