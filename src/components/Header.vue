@@ -102,6 +102,9 @@ export default {
   &.scrolling {
     color: $primary;
     background-color: rgba($background, .9);
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);
+    box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);
   }
 }
 
@@ -121,21 +124,15 @@ export default {
   letter-spacing: .5rem;
 }
 
-.logo_wrap {
-  text-align: center;
-}
+.logo_wrap { text-align: center; }
 
-.hamburger_wrap {
-  text-align: center;
-}
+.hamburger_wrap { text-align: center; }
 
 .apple_logo {
   line-height: 1;
   height: 2rem;
 
-  &:hover {
-    cursor: pointer;
-  }
+  &:hover { cursor: pointer; }
 }
 
 .hamburger {
