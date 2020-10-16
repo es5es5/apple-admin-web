@@ -12,7 +12,7 @@
               </div>
               <div class="grid grid-3-4">
                 <p class="customerName">{{ item.customerName }}</p>
-                <p class="customerMobile">{{ item.customerMobile }}</p>
+                <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
               </div>
             </div>
 
@@ -178,6 +178,7 @@ export default {
     }
 
     .customerMobile {
+      display: block;
       line-height: 0;
       font-size: .9rem;
       color: $gray;

@@ -4,7 +4,7 @@
       <ul class="customer_wrap">
         <li class="customer-item" v-for="(item, index) in customerList" :key="index" @click="goUpdate(item.id)">
           <p class="customerName">{{ item.customerName }}</p>
-          <p class="customerMobile">{{ item.customerMobile }}</p>
+          <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
 
           <span class="delete" @click="deleteCustomer(item.id)" @click.stop>❌</span>
         </li>
@@ -122,6 +122,7 @@ export default {
     }
     .customerMobile {
       font-size: .9rem;
+      color: $gray;
     }
     .customerBank {
       margin-top: .5rem;
