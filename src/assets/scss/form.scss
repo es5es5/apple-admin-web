@@ -122,6 +122,15 @@
     position: relative;
     cursor: text;
     &::placeholder { color: #c5c8ce; }
+
+    &.button { width: calc(80% - .5rem); }
+    + button {
+      margin-left: .5rem;
+      width: 20%;
+      padding: .2rem .5rem .25rem;
+      background-color: $gray;
+      border-color: $border;
+    }
   }
 
   input[type="checkbox"] {
