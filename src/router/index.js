@@ -26,7 +26,7 @@ const routes = [
       meta: {
         title: '판매'
       },
-      component: () => import('@/templates/sales/SalesList')
+      component: () => import('@/templates/sales/SalesList2')
     }, {
       path: 'sales/create',
       name: 'SalesCreate',

@@ -13,7 +13,14 @@
           <input type="text" id="핸드폰" name="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
 
           <label for="주소">주소</label>
-          <input type="text" id="주소" name="주소" placeholder="주소" v-model="salesForm.customerAddress">
+          <div class="row">
+            <div class="grid grid-4-5">
+              <input type="text" id="주소" name="주소" placeholder="주소" v-model="salesForm.customerAddress">
+            </div>
+            <div class="grid grid-1-5">
+              <button type="button" class="btn search" @click="searchAddress">검색</button>
+            </div>
+          </div>
           <input type="text" id="상세주소" name="상세주소" placeholder="상세주소" v-model="salesForm.customerAddressDetail">
 
           <label for="가격" class="required" :class="{'error': errors.has('가격'), 'valid': fields['가격'] ? fields['가격'].valid : false}">가격</label>
@@ -62,6 +69,10 @@ export default {
     }
   },
   methods: {
+    async searchAddress () {
+      const address = await this.getAddress()
+      this.salesForm.customerAddress = address.address
+    },
     async createSales () {
       if (!await this.checkValidate()) return false
       const existCustomer = await this.checkCustomerMobileExist(this.salesForm.customerMobile)
