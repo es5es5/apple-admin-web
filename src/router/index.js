@@ -6,6 +6,7 @@ import { authService } from '@/plugins/fbase'
 import MainLayout from '@/components/MainLayout'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import NotFound from '@/components/NotFound'
 
 Vue.use(VueRouter)
 
@@ -78,6 +79,10 @@ const routes = [
       title: '로그인'
     },
     component: Login
+  },
+  {
+    path: '*',
+    component: NotFound
   }
 ]
 
@@ -99,6 +104,10 @@ router.beforeEach((to, from, next) => {
   authService.onAuthStateChanged(user => {
     if (!user) {
       next({ name: 'Login' })
+    } else {
+      if (to.name === 'Login') {
+        next({ name: 'Home' })
+      }
     }
   })
 

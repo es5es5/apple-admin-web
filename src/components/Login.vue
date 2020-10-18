@@ -2,7 +2,6 @@
   <div id="login">
     <form action="" @submit.prevent>
       <button type="button" @click="socialLogin('google')">GOOGLE</button>
-      <router-link tag="button" :to="{ name: 'Sales' }">SALES</router-link>
     </form>
   </div>
 </template>
@@ -29,7 +28,6 @@ export default {
           break
       }
       const user = await authService.signInWithPopup(provider)
-      console.log(user)
       this.$store.commit('setUser', user.user)
       this.$router.push({ name: 'Home' })
     }

@@ -53,7 +53,7 @@ export default {
     closeMenu () { this.slideIsOpen = false },
     logout () {
       authService.signOut()
-      // this.$store.commit('setUser', null)
+      this.$store.commit('setUser', null)
       this.$router.push({ name: 'Login' })
     },
     goSlideRouter (name) {
