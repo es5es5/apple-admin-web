@@ -7,12 +7,28 @@
 </template>
 
 <script>
+import {
+  authService
+  // dbService
+} from '@/plugins/fbase'
+
 export default {
   name: 'App',
   created () {
     this.initProtocalPlugins()
+    this.setUser()
   },
   methods: {
+    setUser () {
+      authService.onAuthStateChanged(user => {
+        if (user) {
+          this.$store.commit('setUser', user)
+        } else {
+          this.$router.push({ name: 'Login' })
+          // this.$store.commit('setUser', null)
+        }
+      })
+    },
     loadScripts (plugins) {
       return new Promise((resolve, reject) => {
         if (window[plugins.name] && window[plugins.name]) {

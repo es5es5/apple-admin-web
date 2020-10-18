@@ -21,12 +21,17 @@
         <img src="@/assets/images/customer.svg" alt="customer" class="sliderIcon">
         고객 관리
       </li>
+      <li class="logout" @click="logout">
+        <img src="@/assets/images/logout.svg" alt="logout" class="sliderIcon">
+        로그아웃
+      </li>
     </Slide>
   </div>
 </template>
 
 <script>
 import { Slide } from 'vue-burger-menu'
+import { authService } from '@/plugins/fbase'
 
 export default {
   name: 'Slider',
@@ -46,6 +51,11 @@ export default {
   methods: {
     openMenu () { this.slideIsOpen = true },
     closeMenu () { this.slideIsOpen = false },
+    logout () {
+      authService.signOut()
+      // this.$store.commit('setUser', null)
+      this.$router.push({ name: 'Login' })
+    },
     goSlideRouter (name) {
       this.slideIsOpen = false
       this.$router.push({ name })
@@ -72,5 +82,9 @@ export default {
     cursor: pointer;
     opacity: 1;
   }
+}
+
+li.logout {
+  margin-top: 3rem;
 }
 </style>

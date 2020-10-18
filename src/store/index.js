@@ -5,10 +5,20 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: null
+    user: {
+      uid: '',
+      displayName: '',
+      email: ''
+    }
   },
   mutations: {
-    setUser (state, value) { state.user = value }
+    setUser (state, value) {
+      Object.assign(state.user, {
+        uid: value.uid,
+        displayName: value.displayName,
+        email: value.email
+      })
+    }
   },
   getters: {
     getUser: state => state.user

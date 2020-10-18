@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+// import store from '@/store'
+import { authService } from '@/plugins/fbase'
+
 import MainLayout from '@/components/MainLayout'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
@@ -92,6 +95,12 @@ router.beforeEach((to, from, next) => {
   } else {
     document.title = `${to.meta.title} | 충주 사과`
   }
+
+  authService.onAuthStateChanged(user => {
+    if (!user) {
+      next({ name: 'Login' })
+    }
+  })
 
   next()
 })

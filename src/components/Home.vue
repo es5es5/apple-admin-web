@@ -2,7 +2,7 @@
   <div>
     <Header />
     <main class="main">
-      <h3 class="greeting">안녕하세요! <span class="userName">관리자님</span></h3>
+      <h3 class="greeting">안녕하세요! <span class="userName">{{ mixinUser.displayName }}</span>님</h3>
       <ul class="nav_wrap">
         <router-link tag="li" class="nav-item apple" :to="{ name: 'Sales' }">
           <img src="@/assets/images/sales.svg" class="nav-image" alt="apple">

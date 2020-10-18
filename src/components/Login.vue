@@ -29,7 +29,9 @@ export default {
           break
       }
       const user = await authService.signInWithPopup(provider)
-      this.$store.commit('setUser', user)
+      console.log(user)
+      this.$store.commit('setUser', user.user)
+      this.$router.push({ name: 'Home' })
     }
   }
 }
