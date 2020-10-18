@@ -123,6 +123,7 @@ export default {
     font-weight: bold;
     color: $title;
   }
+
   .sales-item {
     @include clearfix;
     @include hover;

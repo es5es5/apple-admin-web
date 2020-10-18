@@ -4,36 +4,15 @@
       <div class="row">
         <div class="grid grid-1-6">
           <div class="logo_wrap">
-            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="apple_logo" alt="home" @click="goBack">
-            <img src="@/assets/images/apple-home.svg" v-else class="apple_logo" alt="home" @click="goHome">
+            <img src="@/assets/images/back.svg" v-if="mixinRouteMetaGoBack" class="header_logo" alt="home" @click="goBack">
+            <img src="@/assets/images/apple-home.svg" v-else class="header_logo" alt="home" @click="goHome">
           </div>
         </div>
         <div class="grid grid-2-3">
           <h1 class="header-title">{{ mixinRouteMetaTitle }}</h1>
         </div>
         <div class="grid grid-1-6">
-          <Slide
-            :isOpen="slideIsOpen"
-            @openMenu="openMenu"
-            @closeMenu="closeMenu"
-            right
-            :width="_width"
-            noOverlay
-            class="slider"
-          >
-            <li @click="goSlideRouter('Home')">
-              <img src="@/assets/images/apple-normal.svg" alt="" class="sliderIcon">
-              HOME
-            </li>
-            <li @click="goSlideRouter('Sales')">
-              <img src="@/assets/images/sales.svg" alt="" class="sliderIcon">
-              판매 관리
-            </li>
-            <li @click="goSlideRouter('Customer')">
-              <img src="@/assets/images/customer.svg" alt="" class="sliderIcon">
-              고객 관리
-            </li>
-          </Slide>
+          <Slider />
         </div>
       </div>
     </div>
@@ -41,22 +20,16 @@
 </template>
 
 <script>
-import { Slide } from 'vue-burger-menu'
+import Slider from './Slider'
 
 export default {
   name: 'Header',
   components: {
-    Slide
-  },
-  computed: {
-    _width () {
-      return window.innerWidth.toString()
-    }
+    Slider
   },
   data () {
     return {
-      scrolling: false,
-      slideIsOpen: false
+      scrolling: false
     }
   },
   beforeMount () {
@@ -66,23 +39,17 @@ export default {
     window.removeEventListener('scroll', this.handleScroll)
   },
   methods: {
+    goHome () {
+      this.$router.push({
+        name: 'Home'
+      })
+    },
     handleScroll () {
       if (window.scrollY > 50) {
         this.scrolling = true
       } else {
         this.scrolling = false
       }
-    },
-    goHome () {
-      this.$router.push({
-        name: 'Home'
-      })
-    },
-    openMenu () { this.slideIsOpen = true },
-    closeMenu () { this.slideIsOpen = false },
-    goSlideRouter (name) {
-      this.slideIsOpen = false
-      this.$router.push({ name })
     }
   }
 }
@@ -125,23 +92,10 @@ export default {
 }
 
 .logo_wrap { text-align: center; }
-
-.hamburger_wrap { text-align: center; }
-
-.apple_logo {
+.header_logo {
   line-height: 1;
   height: 2rem;
 
   &:hover { cursor: pointer; }
-}
-
-.hamburger {
-  height: 2rem;
-  opacity: .8;
-
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
 }
 </style>

@@ -49,7 +49,7 @@ export default {
             return true
           }
         },
-        getAddress () {
+        getAddress (query, popupName = '충주 사과 주소 찾기') {
           return new Promise((resolve, reject) => {
             daum.postcode.load(() => {
               new daum.Postcode({
@@ -94,7 +94,12 @@ export default {
                     address: fullAddr
                   })
                 }
-              }).open()
+                // width: window.innerWidth,
+                // height: window.innerHeight
+              }).open({
+                q: query,
+                popupName: this.$route.name
+              })
             })
           })
         },

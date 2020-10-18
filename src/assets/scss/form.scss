@@ -63,10 +63,7 @@
       &.error {
         color: $error;
 
-        + input {
-          // position: relative;
-          border-color: $error;
-        }
+        + input { border-color: $error; }
       }
     }
 
@@ -123,9 +120,9 @@
     cursor: text;
     &::placeholder { color: #c5c8ce; }
 
-    &.button { width: calc(80% - .5rem); }
+    &.button { width: calc(80% - .25rem); }
     + button {
-      margin-left: .5rem;
+      margin-left: .25rem;
       width: 20%;
       padding: .2rem .5rem .25rem;
       background-color: $gray;
@@ -133,9 +130,7 @@
     }
   }
 
-  input[type="checkbox"] {
-    @include hover;
-  }
+  input[type="checkbox"] { @include hover; }
 
   select {
     overflow: hidden;
@@ -185,9 +180,7 @@
 
   .search_wrap {
 
-    :first-child {
-      margin-left: 0;
-    }
+    :first-child { margin-left: 0; }
 
     @include clearfix;
     margin-bottom: .5rem;
@@ -197,9 +190,7 @@
       margin-right: .5rem;
     }
 
-    label + input:focus {
-      color: $primary;
-    }
+    label + input:focus { color: $primary; }
   }
 
   .separator {
@@ -215,6 +206,4 @@
   }
 }
 
-.action_wrap {
-  @include clearfix;
-}
+.action_wrap { @include clearfix; }

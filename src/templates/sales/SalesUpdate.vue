@@ -66,7 +66,7 @@ export default {
   },
   methods: {
     async searchAddress () {
-      const address = await this.getAddress()
+      const address = await this.getAddress(this.salesForm.customerAddress, 'HI')
       this.salesForm.customerAddress = address.address
     },
     async getSales () {
