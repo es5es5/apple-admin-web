@@ -13,8 +13,15 @@ export default {
      * 날짜 포맷 필터
      */
     Vue.filter('dateFormat', (value, format = 'yyyy-MM-dd') => {
-      if (!value || isNaN(value)) return '-'
-      return DateTime.fromMillis(value).setLocale('ko').toFormat(format)
+      if (!value) return '-'
+      switch (typeof value) {
+        case 'string':
+          return DateTime.fromISO(value).toFormat(format)
+        case 'number':
+          return DateTime.fromMillis(value).toFormat(format)
+        default:
+          return '-'
+      }
     })
   }
 }

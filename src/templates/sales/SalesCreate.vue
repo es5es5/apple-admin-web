@@ -6,6 +6,9 @@
           <label for="사과" class="required" :class="{'error': errors.has('사과'), 'valid': fields['사과'] ? fields['사과'].valid : false}">사과</label>
           <input type="number" id="사과" name="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" v-validate="'required'">
 
+          <label for="판매일" class="required" :class="{'error': errors.has('판매일'), 'valid': fields['판매일'] ? fields['판매일'].valid : false}">판매일</label>
+          <datetime id="판매일" name="판매일" v-model="salesForm.salesDate" v-validate="'required'"></datetime>
+
           <label for="고객" class="required" :class="{'error': errors.has('고객'), 'valid': fields['고객'] ? fields['고객'].valid : false}">고객</label>
           <input type="text" id="고객" name="고객" placeholder="고객명" v-model="salesForm.customerName" v-validate="'required'">
 

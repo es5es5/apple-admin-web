@@ -25,8 +25,8 @@
               {{ item.customerAddressDetail }}
             </p>
             <p class="createtime">
-              <span class="info">등록날짜</span>
-              {{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}
+              <span class="info">판매일</span>
+              {{ item.salesDate | dateFormat('yyyy-MM-dd (EEE)') }}
             </p>
             <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 

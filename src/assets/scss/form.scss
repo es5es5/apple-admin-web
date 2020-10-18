@@ -12,16 +12,16 @@
       width: 100%;
       border: none;
 
-      &:first-child .row { margin-top: 0; }
+      &:first-child div.row { margin-top: 0; }
 
       &.row-05 {
         label { margin-top: .5rem; }
-        :first-child { margin-top: 0; }
+        label:first-child { margin-top: 0; }
       }
 
       &.row-1 {
         label { margin-top: 1rem; }
-        :first-child { margin-top: 0; }
+        label:first-child { margin-top: 0; }
       }
     }
 
