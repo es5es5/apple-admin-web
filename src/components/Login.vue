@@ -44,7 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 #login {
   height: 100vh;
   background-color: $background;
@@ -57,21 +56,31 @@ export default {
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
+
+  @media (max-width: 900px) { width: 100%; }
+  @media (min-width: 900px) {
+    margin: 0 auto;
+    width: 20rem;
+  }
 }
 
 .logo_wrap {
-  padding: 3rem;
+  @media (max-width: 900px) { width: 100%; }
+  @media (min-width: 900px) {
+    margin: 0 auto;
+    width: 20rem;
+  }
+
   margin: 0 auto;
+  padding: 0 3rem 3rem 3rem;
 }
 
 .sign_wrap {
   margin: 0 auto;
-  // width: 80%;
-  background-color: #fff;
 }
 
 .social_wrap {
-  // padding: .5rem 0;
+  padding: 0 1rem;
 
   .btn-social {
     width: 100%;
@@ -79,11 +88,12 @@ export default {
     padding: 1rem 0;
     font-weight: bold;
     font-size: 1.5rem;
+    border-radius: .5rem;
   }
+
   .google {
     background-color: #4384F4;
     color: #fff;
   }
 }
-
 </style>
