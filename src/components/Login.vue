@@ -102,18 +102,17 @@ export default {
     &.google {
       background-color: #fff;
       color: $gray;
+      line-height: 1.5rem;
       border: 2px solid $border;
     }
   }
 
   .social-logo {
     width: 1.5rem;
-    line-height: 1.5rem;
-    vertical-align: bottom;
+    vertical-align: top;
     background-color: #fff;
     margin-right: 1.25rem;
   }
-
 }
 
 .join_wrap {
