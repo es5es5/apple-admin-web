@@ -7,7 +7,13 @@
 
       <div class="sign_wrap">
         <div class="social_wrap">
-          <button type="button" class="btn-social google" @click="socialLogin('google')">Google</button>
+          <button type="button" class="btn-social google" @click="socialLogin('google')">
+            <img src="@/assets/images/google.svg" alt="google" class="social-logo">
+            구글 계정으로 로그인
+          </button>
+        </div>
+        <div class="join_wrap">
+          <span class="join">회원가입</span><span class="separator">|</span><span>비밀번호 찾기</span>
         </div>
       </div>
     </div>
@@ -65,19 +71,21 @@ export default {
 }
 
 .logo_wrap {
-  @media (max-width: 900px) { width: 100%; }
+  @media (max-width: 900px) {
+    width: 100%;
+    min-height: 100%;
+  }
   @media (min-width: 900px) {
     margin: 0 auto;
     width: 20rem;
+    min-height: 20rem;
   }
 
   margin: 0 auto;
   padding: 0 3rem 3rem 3rem;
 }
 
-.sign_wrap {
-  margin: 0 auto;
-}
+.sign_wrap { margin: 0 auto; }
 
 .social_wrap {
   padding: 0 1rem;
@@ -87,13 +95,32 @@ export default {
     border: 1px solid transparent;
     padding: 1rem 0;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     border-radius: .5rem;
+    line-height: 1.25rem;
+
+    &.google {
+      background-color: #fff;
+      color: $gray;
+      border: 2px solid $border;
+    }
   }
 
-  .google {
-    background-color: #4384F4;
-    color: #fff;
+  .social-logo {
+    width: 1.5rem;
+    line-height: 1.5rem;
+    vertical-align: bottom;
+    background-color: #fff;
+    margin-right: 1.25rem;
   }
+
+}
+
+.join_wrap {
+  padding: 0 1rem;
+  font-size: .8rem;
+  color: $gray;
+  text-align: center;
+  line-height: 1.5rem;
 }
 </style>
