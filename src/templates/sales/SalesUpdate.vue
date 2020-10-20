@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="salesUpdate">
     <div class="form_wrap">
       <form class="form" action="" @submit.prevent>
         <fieldset class="row-1">
@@ -97,6 +97,9 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+#salesUpdate {
+  background-color: $background;
+  height: 100vh;
+}
 </style>
