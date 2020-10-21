@@ -97,7 +97,6 @@ export default {
     padding: 1rem;
     border-right: 3px solid $border;
     border-bottom: 3px solid $border;
-    &:last-child { border-bottom: transparent; }
     background-color: $background;
     border-radius: .5rem;
     cursor: pointer;
