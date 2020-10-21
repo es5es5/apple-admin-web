@@ -10,6 +10,8 @@ export default {
         _id () { return this.$route.params.id },
         mixinRouteMetaGoBack () { return this.$route.meta ? this.$route.meta.goBack : false },
         mixinRouteMetaTitle () { return this.$route.meta ? this.$route.meta.title || '충주 사과' : '충주 사과' },
+        mixinRouteMetaTag () { return this.$route.meta ? this.$route.meta.tag : false },
+        mixinRouteParamTag () { return this.$route.params ? this.$route.params.tag : false },
         mixinUser () { return this.$store.getters.getUser }
       },
       methods: {

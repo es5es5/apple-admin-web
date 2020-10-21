@@ -30,7 +30,7 @@ const routes = [
       meta: {
         title: '판매'
       },
-      component: () => import('@/templates/sales/SalesList2')
+      component: () => import('@/templates/sales/SalesList')
     }, {
       path: 'sales/create',
       name: 'SalesCreate',
@@ -44,6 +44,7 @@ const routes = [
       name: 'SalesUpdate',
       meta: {
         title: '판매 수정',
+        tag: true,
         goBack: true
       },
       component: () => import('@/templates/sales/SalesUpdate')
@@ -67,6 +68,7 @@ const routes = [
       name: 'CustomerUpdate',
       meta: {
         title: '고객 수정',
+        tag: true,
         goBack: true
       },
       component: () => import('@/templates/customer/CustomerUpdate')

@@ -2,6 +2,7 @@
   <div id="salesUpdate">
     <div class="form_wrap">
       <form class="form" action="" @submit.prevent>
+        <legend>판매 정보</legend>
         <fieldset class="row-1">
           <label for="사과" class="required" :class="{'error': errors.has('사과'), 'valid': fields['사과'] ? fields['사과'].valid : false}">사과</label>
           <input type="number" id="사과" name="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" v-validate="'required'">

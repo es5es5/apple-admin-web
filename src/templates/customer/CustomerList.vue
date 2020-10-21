@@ -2,7 +2,7 @@
   <div>
     <div>
       <ul class="customer_wrap">
-        <li class="customer-item" v-for="(item, index) in customerList" :key="index" @click="goUpdate(item.id)">
+        <li class="customer-item" v-for="(item, index) in customerList" :key="index" @click="goUpdate(item)">
           <p class="customerName">{{ item.customerName }}</p>
           <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
 
@@ -61,10 +61,13 @@ export default {
         name: 'CustomerCreate'
       })
     },
-    goUpdate (id) {
+    goUpdate (item) {
       this.$router.push({
         name: 'CustomerUpdate',
-        params: { id }
+        params: {
+          id: item.id,
+          tag: item.customerName
+        }
       })
     }
   }

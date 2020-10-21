@@ -9,7 +9,8 @@
           </div>
         </div>
         <div class="grid grid-2-3">
-          <h1 class="header-title">{{ mixinRouteMetaTitle }}</h1>
+          <h1 class="header-title" v-if="!mixinRouteMetaTag">{{ mixinRouteMetaTitle }}</h1>
+          <h1 class="header-title" v-else>{{ mixinRouteParamTag || mixinRouteMetaTitle }}</h1>
         </div>
         <div class="grid grid-1-6">
           <Slider />
@@ -83,6 +84,7 @@ export default {
 }
 
 .header-title {
+  @include ellipsis;
   font-family: SingleDay;
   color: inherit;
   text-align: center;

@@ -3,31 +3,43 @@
     <div>
       <ul class="sales_wrap">
         <transition name="fade" mode="out-in" v-for="(item, index) in salesList" :key="index">
-          <li class="sales-item" @click="goUpdate(item.id)">
+          <li class="sales-item" @click="goUpdate(item)">
             <div class="row">
-              <div class="grid grid-1-4 empty">
+              <div class="grid grid-3-5">
+                <p class="customerName">{{ item.customerName }}</p>
+                <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
+              </div>
+              <div class="grid grid-1-5">
                 <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
                   <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
                 </div>
               </div>
-              <div class="grid grid-3-4">
-                <p class="customerName">{{ item.customerName }}</p>
-                <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
+              <div class="grid grid-1-5 empty"></div>
+            </div>
+
+            <div class="row row-05">
+              <div class="grid grid-1-5">
+                  <span class="info">주소</span>
+              </div>
+              <div class="grid grid-4-5">
+                  {{ item.customerAddress }}
               </div>
             </div>
 
-            <p class="customerAddress">
-              <span class="info">주소</span>
-              {{ item.customerAddress }}
-            </p>
-            <p class="customerAddressDetail">
-              <span class="info">상세주소</span>
-              {{ item.customerAddressDetail }}
-            </p>
-            <p class="createtime">
-              <span class="info">등록날짜</span>
-              {{ item.createtime | dateFormat('yyyy-MM-dd MM:ss (EEE)') }}
-            </p>
+            <div class="row">
+              <div class="grid grid-1-5">
+                <span class="info">상세주소</span>
+              </div>
+              <div class="grid grid-4-5">
+                  {{ item.customerAddressDetail }}
+              </div>
+            </div>
+
+            <div class="createtime_wrap">
+              <!-- <span class="info">판매일</span> -->
+              <span class="createtime">{{ item.salesDate | dateFormat('yyyy-MM-dd (EEE)') }}</span>
+            </div>
+
             <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 
             <span class="delete" @click="deleteSales(item.id)" @click.stop>❌</span>
@@ -87,10 +99,13 @@ export default {
         name: 'SalesCreate'
       })
     },
-    goUpdate (id) {
+    goUpdate (item) {
       this.$router.push({
         name: 'SalesUpdate',
-        params: { id }
+        params: {
+          id: item.id,
+          tag: item.customerName
+        }
       })
     }
   }
@@ -118,11 +133,8 @@ export default {
     position: relative;
     margin: .5rem 0;
     padding: 1rem 1rem 3rem 1rem;
-    border-right: 3px solid $border;
-    border-bottom: 3px solid $border;
+    border-bottom: 2px solid $border;
     &:last-child { border-bottom: transparent; }
-    background-color: $background;
-    border-radius: .5rem;
     cursor: pointer;
 
     .delete {
@@ -139,19 +151,23 @@ export default {
       position: relative;
       margin-bottom: .5rem;
       display: inline-block;
-      width: 3.5rem;
-      height: 3.5rem;
+      width: 3rem;
+      height: 3rem;
     }
 
     .apple_wrap::after {
       position: absolute;
-      font-size: 1.5rem;
-      left: 1.66rem;
-      top: 2.1rem;
+      font-size: 1.25rem;
+      left: 1.43rem;
+      top: 1.9rem;
       transform: translate(-50%, -50%);
       content: attr(data-appleCount);
       pointer-events: none;
       font-weight: bolder;
+    }
+
+    .apple {
+      display: inline-block;
     }
 
     .price {
@@ -170,7 +186,7 @@ export default {
     }
 
     .customerName {
-      margin-right: .5rem;
+      margin-bottom: .25rem;
       line-height: 2rem;
       font-size: 1.3rem;
       font-weight: bold;
@@ -178,6 +194,7 @@ export default {
 
     .customerMobile {
       display: inline-block;
+      margin-bottom: .5rem;
       background-color: $success;
       padding: .25rem .5rem;
       border-radius: .25rem;
@@ -185,15 +202,18 @@ export default {
       color: #fff;
     }
 
-    .customerAddressDetail { font-size: .9rem; }
+    // .customerAddress { margin-top: 1rem; }
+    // .customerAddressDetail { font-size: .9rem; }
 
-    .createtime {
+    .createtime_wrap {
       position: absolute;
       bottom: 1rem;
       left: 1rem;
       line-height: 1rem;
-      font-size: .8rem;
-      // color: $gray;
+
+      .createtime {
+        font-size: .8rem;
+      }
     }
 
     .info {
