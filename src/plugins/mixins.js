@@ -6,6 +6,11 @@ import {
 export default {
   install (Vue) {
     Vue.mixin({
+      data () {
+        return {
+          loading: true
+        }
+      },
       computed: {
         _id () { return this.$route.params.id },
         mixinRouteMetaGoBack () { return this.$route.meta ? this.$route.meta.goBack : false },

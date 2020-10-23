@@ -63,7 +63,10 @@ export default {
   width: 100%;
   transform: translate(-50%, -50%);
 
-  @media (max-width: 900px) { width: 100%; }
+  @media (max-width: 900px) {
+    width: 100%;
+    max-width: 20rem;
+  }
   @media (min-width: 900px) {
     margin: 0 auto;
     width: 20rem;
