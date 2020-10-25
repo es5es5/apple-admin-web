@@ -18,7 +18,7 @@
 
           <template v-else-if="salesForm.productType === '들기름'">
             <label for="들기름" class="required" :class="{'error': errors.has('들기름'), 'valid': fields['들기름'] ? fields['들기름'].valid : false}">들기름 용량</label>
-            <input type="number" id="들기름" name="들기름" min="0" placeholder="들기름 용량" v-model="salesForm.appleCount" v-validate="'required'">
+            <input type="number" id="들기름" name="들기름" min="0" placeholder="들기름 용량" v-model="salesForm.oilAmount" v-validate="'required'">
           </template>
         </fieldset>
       </form>

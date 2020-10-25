@@ -25,6 +25,10 @@
         <img src="@/assets/images/logout.svg" alt="logout" class="sliderIcon">
         로그아웃
       </li>
+      <li class="honeybee">
+        <span class="made">Design By.</span>
+        <img src="@/assets/images/honeybee.svg" alt="honeybee" class="honeybee">
+      </li>
     </Slide>
   </div>
 </template>
@@ -86,5 +90,20 @@ export default {
 
 li.logout {
   margin-top: 3rem;
+}
+li.honeybee {
+  margin-top: 15rem;
+  margin-left: 5rem;
+
+  .made {
+    font-size: 1rem;
+    line-height: 4rem;
+    margin-right: 1rem;
+  }
+
+  .honeybee {
+    line-height: 1rem;
+    width: 4rem;
+  }
 }
 </style>

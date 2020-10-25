@@ -10,8 +10,11 @@
                 <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
               </div>
               <div class="grid grid-1-5">
-                <div class="apple_wrap" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
+                <div class="apple_wrap" v-if="item.productType === '사과'" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
                   <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
+                </div>
+                <div class="bottle_wrap" v-if="item.productType === '들기름'" :data-appleCount="`${item.oilAmount}`" :class="index === 1 ? 'active' : ''">
+                  <img :src="require(`@/assets/images/bottle.svg`)" alt="" class="bottle">
                 </div>
               </div>
               <div class="grid grid-1-5 empty"></div>
@@ -147,7 +150,7 @@ export default {
       color: $error;
     }
 
-    .apple_wrap {
+    .apple_wrap, .bottle_wrap {
       position: relative;
       margin-bottom: .5rem;
       display: inline-block;
@@ -166,7 +169,19 @@ export default {
       font-weight: bolder;
     }
 
-    .apple {
+    .bottle_wrap::after {
+      position: absolute;
+      font-size: .75rem;
+      left: 1.52rem;
+      top: 1.9rem;
+      transform: translate(-50%, -50%);
+      content: attr(data-appleCount);
+      pointer-events: none;
+      font-weight: bolder;
+    }
+
+    .bottle {
+      width: 3rem;
       display: inline-block;
     }
 
