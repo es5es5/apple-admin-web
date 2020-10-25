@@ -93,7 +93,7 @@ li.logout {
 }
 li.honeybee {
   margin-top: 15rem;
-  margin-left: 5rem;
+  // margin-left: 5rem;
 
   .made {
     font-size: 1rem;

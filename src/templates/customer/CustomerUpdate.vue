@@ -18,15 +18,17 @@
       </form>
     </div>
 
-    <form class="form" action="" @submit.prevent>
-      <legend>판매 내역</legend>
-      <ul>
-        <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
-          {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
-        </li>
-      </ul>
-      <NoDataMessage tag="ul" :loading="loading" :list="salesList" message="판매 내역이 없습니다"></NoDataMessage>
-    </form>
+    <div class="sales_wrap">
+      <form class="form" action="" @submit.prevent>
+        <legend>판매 내역</legend>
+        <ul>
+          <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
+            {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
+          </li>
+        </ul>
+        <NoDataMessage tag="ul" :loading="loading" :list="salesList" message="판매 내역이 없습니다"></NoDataMessage>
+      </form>
+    </div>
 
     <Footer>
       <template v-slot:button>
@@ -123,8 +125,6 @@ export default {
 
 <style lang="scss" scoped>
 .sales_wrap {
-  margin-top: 1rem;
-
   .title {
     font-weight: bold;
     color: $title;
