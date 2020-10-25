@@ -26,7 +26,7 @@
         로그아웃
       </li>
       <li class="honeybee">
-        <span class="made">Design By.</span>
+        <span class="made">Designed By.</span>
         <img src="@/assets/images/honeybee.svg" alt="honeybee" class="honeybee">
       </li>
     </Slide>
