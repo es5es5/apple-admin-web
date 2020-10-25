@@ -9,7 +9,7 @@ export default {
     Vue.mixin({
       data () {
         return {
-          loading: true
+          loadData: true
         }
       },
       computed: {

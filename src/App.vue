@@ -3,6 +3,14 @@
     <transition name="fade" mode="out-in">
       <router-view/>
     </transition>
+    <GoTop
+      :max-width="1"
+      :boundary="100"
+      bg-color="rgba(128, 134, 149, .7)"
+      :size="pxToRem(3)"
+      :right="pxToRem(1)"
+      :bottom="pxToRem(4)"
+    />
   </div>
 </template>
 
@@ -18,7 +26,13 @@ export default {
     this.initProtocalPlugins()
     this.setUser()
   },
+  computed: {
+    _width () { return window.innerWidth / 10 }
+  },
   methods: {
+    pxToRem (value) {
+      return value * 18
+    },
     setUser () {
       authService.onAuthStateChanged(user => {
         if (user) {

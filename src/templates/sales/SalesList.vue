@@ -68,7 +68,7 @@
           </li>
         </transition>
       </ul>
-      <NoDataMessage tag="ul" :list="_salesList" :loading="loading" message="검색 결과가 없습니다." loadingMessage=""></NoDataMessage>
+      <NoDataMessage tag="ul" :list="_salesList" :loading="loadData" />
 
       <Footer>
         <template v-slot:button>
@@ -122,7 +122,6 @@ export default {
       }
     },
     async getSalesList () {
-      console.log(this.getToDate())
       dbService.collection('sales')
         .orderBy('salesDate', 'desc')
         .onSnapshot(snapshot => {
@@ -130,7 +129,7 @@ export default {
             id: doc.id,
             ...doc.data()
           }))
-          this.loading = false
+          this.loadData = false
         })
     },
     goCreate () {

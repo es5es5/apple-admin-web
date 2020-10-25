@@ -18,6 +18,8 @@
         <span class="delete" @click="deleteCustomer(item.id)" @click.stop>❌</span>
       </li>
     </ul>
+    <NoDataMessage tag="ul" :list="_customerList" :loading="loadData" />
+
     <Footer model="Customer">
       <template v-slot:button>
         <button type="button" class="btn-fill primary" @click="goCreate">등록하기</button>
@@ -73,6 +75,7 @@ export default {
             id: doc.id,
             ...doc.data()
           }))
+          this.loadData = false
         })
     },
     goCreate () {

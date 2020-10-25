@@ -24,7 +24,7 @@ export default {
     },
     loading: {
       type: Boolean,
-      default: () => false
+      default: () => true
     },
     message: {
       type: String,
@@ -37,10 +37,6 @@ export default {
     tag: {
       type: String,
       default: () => 'tr'
-    }
-  },
-  data () {
-    return {
     }
   },
   computed: {

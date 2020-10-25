@@ -26,7 +26,7 @@
             {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
           </li>
         </ul>
-        <NoDataMessage tag="ul" :loading="loading" :list="salesList" message="판매 내역이 없습니다"></NoDataMessage>
+        <NoDataMessage tag="ul" :list="salesList" message="판매 내역이 없습니다" />
       </form>
     </div>
 

@@ -43,9 +43,7 @@ export default {
     Slide
   },
   computed: {
-    _width () {
-      return (window.innerWidth + 1).toString()
-    }
+    _width () { return (window.innerWidth + 1).toString() }
   },
   data () {
     return {
