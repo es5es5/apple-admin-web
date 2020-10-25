@@ -5,7 +5,7 @@
         <div class="row">
           <div class="grid grid-1-3">
             <select name="상품_구분" id="상품_구분" v-model="searchForm.productType">
-              <option value="">전체</option>
+              <option value="">상품 전체</option>
               <option value="사과">사과</option>
               <option value="들기름">들기름</option>
             </select>
@@ -29,9 +29,6 @@
             </template>
             </datetime>
           </div>
-          <!-- <div class="grid grid-1-6">
-            <button type="button" class="btn gray fill" @click="getSalesList">검색</button>
-          </div> -->
         </div>
       </div>
       <ul class="sales_wrap">

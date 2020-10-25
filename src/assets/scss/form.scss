@@ -95,6 +95,7 @@ input, select {
   line-height: 1;
   font-size: 1rem;
   border: 1px solid #dcdee2;
+  background-color: #fff;
   border-radius: .25rem;
   vertical-align: middle;
   outline: none;
@@ -111,7 +112,6 @@ input, select {
 
 input {
   padding: .2rem .5rem .25rem;
-  background-color: #fff;
   background-image: none;
   position: relative;
   cursor: text;

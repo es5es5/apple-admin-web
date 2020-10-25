@@ -179,6 +179,8 @@ export default {
                 result = value.substring(0, 2) + '-' + value.substring(2, value.length)
               }
             } else {
+              if (value.length > 3 && value.substring(0, 3) !== '010') return result
+
               if (value.length > 6) {
                 if (value.length > 10) {
                   result = value.substring(0, 3) + '-' + value.substring(3, 7) + '-' + value.substring(7, 11)

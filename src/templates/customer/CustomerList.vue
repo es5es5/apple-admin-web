@@ -1,20 +1,28 @@
 <template>
   <div>
-    <div>
-      <ul class="customer_wrap">
-        <li class="customer-item" v-for="(item, index) in customerList" :key="index" @click="goUpdate(item)">
-          <p class="customerName">{{ item.customerName }}</p>
-          <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
-
-          <span class="delete" @click="deleteCustomer(item.id)" @click.stop>❌</span>
-        </li>
-      </ul>
-      <Footer model="Customer">
-        <template v-slot:button>
-          <button type="button" class="btn-fill primary" @click="goCreate">등록하기</button>
-        </template>
-      </Footer>
+    <div class="search_wrap">
+      <div class="row">
+        <div class="grid grid-1-2">
+          <input type="search" placeholder="고객명" v-model="searchForm.customerName">
+        </div>
+        <div class="grid grid-1-2">
+          <input type="search" placeholder="핸드폰 번호" :value="searchForm.customerMobile" @input="searchForm.customerMobile = $getTelFormat($event.target)">
+        </div>
+      </div>
     </div>
+    <ul class="customer_wrap">
+      <li class="customer-item" v-for="(item, index) in _customerList" :key="index" @click="goUpdate(item)">
+        <p class="customerName">{{ item.customerName }}</p>
+        <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
+
+        <span class="delete" @click="deleteCustomer(item.id)" @click.stop>❌</span>
+      </li>
+    </ul>
+    <Footer model="Customer">
+      <template v-slot:button>
+        <button type="button" class="btn-fill primary" @click="goCreate">등록하기</button>
+      </template>
+    </Footer>
   </div>
 </template>
 
@@ -29,8 +37,19 @@ export default {
   created () {
     this.getCustomerList()
   },
+  computed: {
+    _customerList () {
+      return this.customerList
+        .filter(item => item.customerName.indexOf(this.searchForm.customerName) > -1)
+        .filter(item => item.customerMobile.indexOf(this.searchForm.customerMobile) > -1)
+    }
+  },
   data () {
     return {
+      searchForm: {
+        customerName: '',
+        customerMobile: ''
+      },
       customerList: []
     }
   },
@@ -48,7 +67,7 @@ export default {
     },
     async getCustomerList () {
       dbService.collection('customer')
-        .orderBy('createtime', 'desc')
+        .orderBy('customerName', 'asc')
         .onSnapshot(snapshot => {
           this.customerList = snapshot.docs.map(doc => ({
             id: doc.id,
