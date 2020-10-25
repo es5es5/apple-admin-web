@@ -18,17 +18,16 @@
       </form>
     </div>
 
-    <div class="sales_wrap">
-      <form class="form" action="" @submit.prevent>
-        <legend>판매 내역</legend>
-        <ul>
-          <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
-            {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
-          </li>
-        </ul>
-        <NoDataMessage tag="ul" :loading="loading" :list="salesList" message="판매 내역이 없습니다"></NoDataMessage>
-      </form>
-    </div>
+    <form class="form" action="" @submit.prevent>
+      <legend>판매 내역</legend>
+      <ul>
+        <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
+          {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
+        </li>
+      </ul>
+      <NoDataMessage tag="ul" :loading="loading" :list="salesList" message="판매 내역이 없습니다"></NoDataMessage>
+    </form>
+
     <Footer>
       <template v-slot:button>
         <button type="button" class="btn-fill orange" @click="updateSales">수정하기</button>
