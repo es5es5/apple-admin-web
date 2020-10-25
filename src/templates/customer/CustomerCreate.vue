@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form_wrap">
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <fieldset class="row-05">
           <label for="고객" class="required" :class="{'error': errors.has('고객'), 'valid': fields['고객'] ? fields['고객'].valid : false}">고객</label>
           <input type="text" id="고객" name="고객" placeholder="고객명" v-model="customerForm.customerName" v-validate="'required'">

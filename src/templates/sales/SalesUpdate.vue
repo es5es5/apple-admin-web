@@ -1,7 +1,7 @@
 <template>
   <div id="salesUpdate">
     <div class="form_wrap">
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <fieldset class="row-05">
           <legend>상품 정보</legend>
           <label for="상품_구분" class="required" :class="{'error': errors.has('상품_구분'), 'valid': fields['상품_구분'] ? fields['상품_구분'].valid : false}">상품 구분</label>
@@ -22,7 +22,7 @@
         </fieldset>
       </form>
 
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <fieldset class="row-05">
           <legend>판매 정보</legend>
           <label for="판매일" class="required" :class="{'error': errors.has('판매일'), 'valid': fields['판매일'] ? fields['판매일'].valid : false}">판매일</label>
@@ -40,7 +40,7 @@
         </fieldset>
       </form>
 
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <fieldset class="row-05">
           <legend>고객 정보</legend>
           <label for="고객" class="required" :class="{'error': errors.has('고객'), 'valid': fields['고객'] ? fields['고객'].valid : false}">고객</label>

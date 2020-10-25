@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="form_wrap">
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <legend>고객 정보</legend>
         <fieldset class="row-05">
           <label for="고객" class="required" :class="{'error': errors.has('고객'), 'valid': fields['고객'] ? fields['고객'].valid : false}">고객</label>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="sales_wrap">
-      <form class="form" action="" @submit.prevent>
+      <form class="form" action="" autocomplete="off" @submit.prevent>
         <legend>판매 내역</legend>
         <ul>
           <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
