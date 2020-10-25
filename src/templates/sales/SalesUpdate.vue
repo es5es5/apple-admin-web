@@ -66,7 +66,7 @@
 
 <script>
 import {
-  // authService,
+  authService,
   dbService
 } from '@/plugins/fbase'
 
@@ -87,7 +87,8 @@ export default {
         customerAddress: '',
         customerAddressDetail: '',
         salesDate: '',
-        price: ''
+        price: '',
+        updaterId: authService.currentUser.uid
       }
     }
   },
@@ -98,7 +99,7 @@ export default {
     },
     async getSales () {
       await dbService.collection('sales').doc(this._id).get().then(doc => {
-        this.salesForm = doc.data()
+        Object.assign(this.salesForm, doc.data())
       })
     },
     async updateSales () {

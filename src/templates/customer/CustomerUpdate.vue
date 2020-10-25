@@ -40,7 +40,7 @@
 
 <script>
 import {
-  // authService,
+  authService,
   dbService
 } from '@/plugins/fbase'
 
@@ -59,7 +59,8 @@ export default {
         customerMobile: '',
         customerAddress: '',
         customerAddressDetail: '',
-        createtime: Date.now()
+        createtime: Date.now(),
+        updateId: authService.currentUser.uid
       }
     }
   },
@@ -70,7 +71,7 @@ export default {
     },
     async getCustomer () {
       await dbService.collection('customer').doc(this._id).get().then(doc => {
-        this.customerForm = doc.data()
+        Object.assign(this.customerForm, doc.data())
         this.getSalesList()
       })
     },

@@ -66,7 +66,7 @@
 
 <script>
 import {
-  // authService,
+  authService,
   dbService
 } from '@/plugins/fbase'
 
@@ -82,7 +82,8 @@ export default {
         customerAddress: '',
         customerAddressDetail: '',
         createtime: Date.now(),
-        price: ''
+        price: '',
+        writerId: authService.currentUser.uid
       }
     }
   },
