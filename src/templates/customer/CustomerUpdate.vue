@@ -61,15 +61,6 @@ export default {
         customerAddressDetail: '',
         createtime: Date.now()
       }
-      // customerForm: {
-      //   appleCount: '16',
-      //   customerName: '김고객',
-      //   customerMobile: '010-2222-3333',
-      //   customerAddress: '서울 강남구 내맘대로 486길',
-      //   customerAddressDetail: '123-456',
-      //   createtime: Date.now(),
-      //   price: '50000'
-      // }
     }
   },
   methods: {

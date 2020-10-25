@@ -4,9 +4,8 @@
       <form class="form" action="" @submit.prevent>
         <fieldset class="row-05">
           <legend>상품 정보</legend>
-          <label for="상품" class="required" :class="{'error': errors.has('상품'), 'valid': fields['상품'] ? fields['상품'].valid : false}">상품</label>
-          <select name="상품" id="상품" v-model="salesForm.productType">
-            <option value="">선택</option>
+          <label for="상품_구분" class="required" :class="{'error': errors.has('상품_구분'), 'valid': fields['상품_구분'] ? fields['상품_구분'].valid : false}">상품 구분</label>
+          <select name="상품_구분" id="상품_구분" v-model="salesForm.productType" v-validate="'required'">
             <option value="사과">사과</option>
             <option value="들기름">들기름</option>
           </select>
@@ -27,7 +26,14 @@
         <fieldset class="row-05">
           <legend>판매 정보</legend>
           <label for="판매일" class="required" :class="{'error': errors.has('판매일'), 'valid': fields['판매일'] ? fields['판매일'].valid : false}">판매일</label>
-          <datetime id="판매일" name="판매일" v-model="salesForm.salesDate" v-validate="'required'"></datetime>
+          <datetime
+              id="판매일"
+              name="판매일"
+              placeholder="판매일"
+              :phrases="{ok:'확인', cancel:'취소'}"
+              v-model="salesForm.salesDate"
+              v-validate="'required'"
+            />
 
           <label for="가격" class="required" :class="{'error': errors.has('가격'), 'valid': fields['가격'] ? fields['가격'].valid : false}">가격</label>
           <input type="text" id="가격" name="가격" placeholder="가격" :value="salesForm.price | numberWithComma" @input="salesForm.price = $getComma($event.target)" v-validate="'required'">

@@ -1,8 +1,28 @@
 <template>
   <div>
     <div>
+      <div class="search_wrap">
+        <div class="row">
+          <div class="grid grid-5-6">
+            <input type="search" placeholder="고객명" v-model="searchForm.customerName">
+          </div>
+          <!-- <div class="grid grid-1-2">
+            <datetime
+              id="판매일"
+              name="판매일"
+              placeholder="전체일"
+              class="size-half"
+              :phrases="{ok:'확인', cancel:'취소', reset: '초기화'}"
+              v-model="searchForm.salesDate"
+            />
+          </div> -->
+          <div class="grid grid-1-6">
+            <button type="button" class="btn gray fill" @click="getSalesList">검색</button>
+          </div>
+        </div>
+      </div>
       <ul class="sales_wrap">
-        <transition name="fade" mode="out-in" v-for="(item, index) in salesList" :key="index">
+        <transition name="fade" mode="out-in" v-for="(item, index) in _salesList" :key="index">
           <li class="sales-item" @click="goUpdate(item)">
             <div class="row">
               <div class="grid grid-3-5">
@@ -10,10 +30,10 @@
                 <a :href="`tel:${item.customerMobile}`" class="customerMobile" @click.stop>{{ item.customerMobile }}</a>
               </div>
               <div class="grid grid-1-5">
-                <div class="apple_wrap" v-if="item.productType === '사과'" :data-appleCount="item.appleCount" :class="index === 1 ? 'active' : ''">
-                  <img :src="require(`@/assets/images/apple-empty${index % 3 === 0 ? '-active' : ''}.svg`)" alt="" class="apple">
+                <div class="apple_wrap" v-if="item.productType === '사과'" :data-appleCount="item.appleCount">
+                  <img :src="require(`@/assets/images/apple-empty.svg`)" alt="" class="apple">
                 </div>
-                <div class="bottle_wrap" v-if="item.productType === '들기름'" :data-appleCount="`${item.oilAmount}`" :class="index === 1 ? 'active' : ''">
+                <div class="bottle_wrap" v-if="item.productType === '들기름'" :data-appleCount="`${item.oilAmount}`">
                   <img :src="require(`@/assets/images/bottle.svg`)" alt="" class="bottle">
                 </div>
               </div>
@@ -39,13 +59,12 @@
             </div>
 
             <div class="createtime_wrap">
-              <!-- <span class="info">판매일</span> -->
               <span class="createtime">{{ item.salesDate | dateFormat('yyyy-MM-dd (EEE)') }}</span>
             </div>
 
             <p class="price">{{ item.price | numberWithComma }}<span class="won">원</span></p>
 
-            <span class="delete" @click="deleteSales(item.id)" @click.stop>❌</span>
+            <span class="delete" @click="deleteSales(item)" @click.stop>❌</span>
           </li>
         </transition>
       </ul>
@@ -70,16 +89,27 @@ export default {
   created () {
     this.getSalesList()
   },
+  computed: {
+    _salesList () {
+      return this.salesList
+        .filter(item => item.customerName.indexOf(this.searchForm.customerName) > -1)
+        // .filter(item => item.salesDate <= this.searchForm.salesDate)
+    }
+  },
   data () {
     return {
+      searchForm: {
+        customerName: '',
+        salesDate: ''
+      },
       salesList: []
     }
   },
   methods: {
-    async deleteSales (id) {
-      const ok = window.confirm('정말 삭제하시겠습니까?')
+    async deleteSales (item) {
+      const ok = window.confirm(`[${item.customerName}] 정말 삭제하시겠습니까?`)
       if (ok) {
-        await dbService.doc(`sales/${id}`).delete().then(() => {
+        await dbService.doc(`sales/${item.id}`).delete().then(() => {
           this.$toast.success(
             '판매가 삭제되었습니다',
             this.ToastSettings
@@ -89,7 +119,9 @@ export default {
     },
     async getSalesList () {
       dbService.collection('sales')
-        .orderBy('createtime', 'desc')
+        // .where('customerName', 'array-contains', this.searchForm.customerName)
+        // .where('salesDate', '<=', this.searchForm.salesDate)
+        .orderBy('salesDate', 'desc')
         .onSnapshot(snapshot => {
           this.salesList = snapshot.docs.map(doc => ({
             id: doc.id,

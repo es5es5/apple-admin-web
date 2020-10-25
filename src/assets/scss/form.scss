@@ -60,6 +60,7 @@
       color: $error;
 
       + input { border-color: $error; }
+      + select { border-color: $error; }
     }
   }
 
