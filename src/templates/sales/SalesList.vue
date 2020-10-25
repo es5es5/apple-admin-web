@@ -17,7 +17,7 @@
             <datetime
               id="판매일"
               name="판매일"
-              placeholder="전체일"
+              placeholder="판매일"
               class="size-half"
               :phrases="{ok:'확인', cancel:'초기화'}"
               v-model="searchForm.salesDate"
@@ -78,6 +78,7 @@
           </li>
         </transition>
       </ul>
+      <NoDataMessage tag="ul" :list="_salesList" :loading="loading" message="검색 결과가 없습니다." loadingMessage=""></NoDataMessage>
 
       <Footer>
         <template v-slot:button>
@@ -104,7 +105,7 @@ export default {
       return this.salesList
         .filter(item => item.productType.indexOf(this.searchForm.productType) > -1)
         .filter(item => item.customerName.indexOf(this.searchForm.customerName) > -1)
-        .filter(item => this.getToDate(item.salesDate) <= (this.searchForm.salesDate ? this.getToDate(this.searchForm.salesDate) : '9999-9999-9999'))
+        .filter(item => this.getToDate(item.salesDate).indexOf(this.getToDate(this.searchForm.salesDate)) > -1)
     }
   },
   data () {
@@ -139,6 +140,7 @@ export default {
             id: doc.id,
             ...doc.data()
           }))
+          this.loading = false
         })
     },
     goCreate () {

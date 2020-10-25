@@ -1,9 +1,9 @@
 <template>
   <tr v-if="(!_list || _list.length < 1) && _tag === 'tr'">
-    <td :colspan="_colspan">{{ _loading ? loading_message : message }}</td>
+    <td :colspan="_colspan">{{ _loading ? loadingMessage : message }}</td>
   </tr>
   <ul v-else-if="(!_list || _list.length < 1) && _tag === 'ul'">
-    <li>{{ _loading ? loading_message : message }}</li>
+    <li>{{ _loading ? loadingMessage : message }}</li>
   </ul>
 </template>
 
@@ -30,6 +30,10 @@ export default {
       type: String,
       default: () => '검색 결과가 없습니다'
     },
+    loadingMessage: {
+      type: String,
+      default: () => '데이터를 가져오는 중입니다'
+    },
     tag: {
       type: String,
       default: () => 'tr'
@@ -37,7 +41,6 @@ export default {
   },
   data () {
     return {
-      loading_message: '데이터를 가져오는 중입니다'
     }
   },
   computed: {
