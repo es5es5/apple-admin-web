@@ -1,15 +1,36 @@
 <template>
   <footer id="footer">
     <div class="footer_wrap">
-      <slot name="button"></slot>
+      <transition name="fade" mode="out-in">
+        <slot name="button" v-if="height > 600"></slot>
       <!-- <button type="button" class="btn-fill" @click="goCreate(_model)">등록하기</button> -->
+      </transition>
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'Footer'
+  name: 'Footer',
+  beforeMount () {
+    this.windowResizingEventListen()
+  },
+  beforeDestroy () {
+    window.removeEventListener('resize')
+  },
+  data () {
+    return {
+      height: window.innerHeight
+    }
+  },
+  methods: {
+    windowResizingEventListen () {
+      window.addEventListener('resize', () => {
+        this.height = window.innerHeight
+        console.log('height', this.height)
+      })
+    }
+  }
 }
 </script>
 
