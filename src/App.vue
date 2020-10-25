@@ -5,9 +5,10 @@
     </transition>
     <GoTop
       :max-width="1"
-      :boundary="100"
-      bg-color="rgba(128, 134, 149, .7)"
-      :size="pxToRem(3)"
+      :boundary="150"
+      :z-index="900"
+      bg-color="rgba(128, 134, 149, .5)"
+      :size="pxToRem(2.5)"
       :right="pxToRem(1)"
       :bottom="pxToRem(4)"
     />
