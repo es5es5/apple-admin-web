@@ -82,8 +82,7 @@ export default {
         customerAddress: '',
         customerAddressDetail: '',
         createtime: Date.now(),
-        price: '',
-        writerId: authService.currentUser.uid
+        price: ''
       }
     }
   },
@@ -105,6 +104,7 @@ export default {
         })
       }
 
+      this.salesForm.writerId = authService.currentUser.uid
       this.salesForm.price = parseFloat(this.salesForm.price.replace(/,/g, ''))
 
       await dbService.collection('sales').add({

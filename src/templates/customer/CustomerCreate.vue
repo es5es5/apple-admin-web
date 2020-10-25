@@ -39,8 +39,7 @@ export default {
         customerMobile: '',
         customerAddress: '',
         customerAddressDetail: '',
-        createtime: Date.now(),
-        writerId: authService.currentUser.uid
+        createtime: Date.now()
       }
     }
   },
@@ -52,6 +51,7 @@ export default {
     async createCustomer () {
       if (!await this.checkValidate()) return false
 
+      this.customerForm.writerId = authService.currentUser.uid
       await dbService.collection('customer').add({
         createtime: Date.now(),
         ...this.customerForm
