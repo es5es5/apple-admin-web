@@ -26,7 +26,7 @@
             {{ index + 1 }}. <span class="productType">{{ item.productType }}</span> <span class="createtime">{{ item.salesDate | dateFormat }}</span>
           </li>
         </ul>
-        <NoDataMessage tag="ul" :list="salesList" message="판매 내역이 없습니다" />
+        <NoDataMessage tag="ul" style="margin-top: .5rem" :list="salesList" :loading="loadData" message="판매 내역이 없습니다" />
       </form>
     </div>
 
@@ -59,8 +59,7 @@ export default {
         customerMobile: '',
         customerAddress: '',
         customerAddressDetail: '',
-        createtime: Date.now(),
-        updateId: authService.currentUser.uid
+        createtime: Date.now()
       }
     }
   },
@@ -85,13 +84,14 @@ export default {
             id: doc.id,
             ...doc.data()
           }))
-          this.loading = false
+          this.loadData = false
         })
     },
     async updateSales () {
       if (!await this.checkValidate()) return false
 
       this.customerForm.updatetime = Date.now()
+      this.customerForm.updaterId = authService.currentUser.uid
       await dbService.doc(`customer/${this._id}`).update(
         this.customerForm
       ).then(() => {
@@ -117,11 +117,6 @@ export default {
 
 <style lang="scss" scoped>
 .sales_wrap {
-  .title {
-    font-weight: bold;
-    color: $title;
-  }
-
   .sales-item {
     @include clearfix;
     @include hover;

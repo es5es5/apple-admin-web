@@ -87,8 +87,7 @@ export default {
         customerAddress: '',
         customerAddressDetail: '',
         salesDate: '',
-        price: '',
-        updaterId: authService.currentUser.uid
+        price: ''
       }
     }
   },
@@ -106,6 +105,7 @@ export default {
       if (!await this.checkValidate()) return false
 
       this.salesForm.updatetime = Date.now()
+      this.salesForm.updaterId = authService.currentUser.uid
       this.salesForm.price = this.salesForm.price ? this.salesForm.price.toString().replace(/,/g, '') : ''
       await dbService.doc(`sales/${this._id}`).update(
         this.salesForm

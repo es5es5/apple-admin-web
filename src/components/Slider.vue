@@ -45,6 +45,9 @@ export default {
   computed: {
     _width () { return (window.innerWidth + 1).toString() }
   },
+  watch: {
+    '$route.path' () { this.closeMenu() }
+  },
   data () {
     return {
       slideIsOpen: false
