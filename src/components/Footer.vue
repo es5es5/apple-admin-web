@@ -1,10 +1,8 @@
 <template>
   <footer id="footer">
     <div class="footer_wrap">
-      <transition name="fade" mode="out-in">
-        <slot name="button" v-if="height > 600"></slot>
+      <slot name="button" v-if="height > 600"></slot>
       <!-- <button type="button" class="btn-fill" @click="goCreate(_model)">등록하기</button> -->
-      </transition>
     </div>
   </footer>
 </template>
@@ -27,7 +25,6 @@ export default {
     windowResizingEventListen () {
       window.addEventListener('resize', () => {
         this.height = window.innerHeight
-        console.log('height', this.height)
       })
     }
   }
