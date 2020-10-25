@@ -51,21 +51,11 @@
             </div>
 
             <div class="row row-05">
-              <div class="grid grid-1-5">
-                  <span class="info">주소</span>
-              </div>
-              <div class="grid grid-4-5">
-                  {{ item.customerAddress }}
-              </div>
+              {{ item.customerAddress }}
             </div>
 
             <div class="row">
-              <div class="grid grid-1-5">
-                <span class="info">상세주소</span>
-              </div>
-              <div class="grid grid-4-5">
-                  {{ item.customerAddressDetail }}
-              </div>
+              {{ item.customerAddressDetail }}
             </div>
 
             <div class="createtime_wrap">
