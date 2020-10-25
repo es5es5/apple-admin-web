@@ -18,7 +18,6 @@
               id="판매일"
               name="판매일"
               placeholder="판매일"
-              class="size-half"
               :phrases="{ok:'확인', cancel:'초기화'}"
               v-model="searchForm.salesDate"
               @close="getSalesList"

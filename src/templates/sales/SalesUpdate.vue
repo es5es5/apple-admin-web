@@ -47,7 +47,7 @@
           <input type="text" id="고객" name="고객" placeholder="고객명" v-model="salesForm.customerName" v-validate="'required'">
 
           <label for="핸드폰">핸드폰 번호</label>
-          <input type="text" id="핸드폰" name="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
+          <input type="tel" id="핸드폰" name="핸드폰" placeholder="핸드폰 번호" :value="salesForm.customerMobile" @input="salesForm.customerMobile = $getTelFormat($event.target)">
 
           <label for="주소">주소</label>
           <input type="text" id="주소" name="주소" placeholder="주소" class="button" v-model="salesForm.customerAddress">
