@@ -14,7 +14,7 @@ export default {
     this.windowResizingEventListen()
   },
   beforeDestroy () {
-    window.removeEventListener('resize')
+    window.removeEventListener('resize', () => {})
   },
   data () {
     return {

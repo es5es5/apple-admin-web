@@ -23,7 +23,7 @@
         <legend>판매 내역</legend>
         <ul>
           <li class="sales-item" v-for="(item, index) in salesList" :key="index" @click="goSalesUpdate(item)">
-            {{ index + 1 }}. <span class="productName">사과{{ item.appleCount }}</span> <span class="createtime">{{ item.createtime | dateFormat }}</span>
+            {{ index + 1 }}. <span class="productType">{{ item.productType }}</span> <span class="createtime">{{ item.salesDate | dateFormat }}</span>
           </li>
         </ul>
         <NoDataMessage tag="ul" :list="salesList" message="판매 내역이 없습니다" />
@@ -77,7 +77,7 @@ export default {
     async getSalesList () {
       dbService.collection('sales')
         .where('customerMobile', '==', this.customerForm.customerMobile)
-        .orderBy('createtime', 'desc')
+        .orderBy('salesDate', 'desc')
         .get()
         .then(result => {
           result.forEach(doc => this.salesList.push({

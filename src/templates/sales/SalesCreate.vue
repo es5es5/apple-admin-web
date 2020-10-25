@@ -70,8 +70,6 @@ import {
   dbService
 } from '@/plugins/fbase'
 
-console.log(dbService)
-
 export default {
   name: 'SalesCreate',
   data () {
