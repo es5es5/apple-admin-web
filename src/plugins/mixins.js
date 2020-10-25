@@ -2,6 +2,7 @@ import {
   // authService,
   dbService
 } from '@/plugins/fbase'
+import { DateTime } from 'luxon'
 
 export default {
   install (Vue) {
@@ -235,6 +236,17 @@ export default {
             result = result.substring(0, 4) + '-' + result.substring(4, result.length)
           }
           return result
+        },
+        getToDate (value, format = 'yyyy-MM-dd') {
+          if (!value) return '-'
+          switch (typeof value) {
+            case 'string':
+              return DateTime.fromISO(value).toFormat(format).toString()
+            case 'number':
+              return DateTime.fromMillis(value).toFormat(format).toString()
+            default:
+              return '-'
+          }
         }
       }
     })

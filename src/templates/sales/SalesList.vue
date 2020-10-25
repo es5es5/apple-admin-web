@@ -3,22 +3,35 @@
     <div>
       <div class="search_wrap">
         <div class="row">
-          <div class="grid grid-5-6">
+          <div class="grid grid-1-3">
+            <select name="상품_구분" id="상품_구분" v-model="searchForm.productType">
+              <option value="">전체</option>
+              <option value="사과">사과</option>
+              <option value="들기름">들기름</option>
+            </select>
+          </div>
+          <div class="grid grid-1-3">
             <input type="search" placeholder="고객명" v-model="searchForm.customerName">
           </div>
-          <!-- <div class="grid grid-1-2">
+          <div class="grid grid-1-3">
             <datetime
               id="판매일"
               name="판매일"
               placeholder="전체일"
               class="size-half"
-              :phrases="{ok:'확인', cancel:'취소', reset: '초기화'}"
+              :phrases="{ok:'확인', cancel:'초기화'}"
               v-model="searchForm.salesDate"
-            />
-          </div> -->
-          <div class="grid grid-1-6">
-            <button type="button" class="btn gray fill" @click="getSalesList">검색</button>
+              @close="getSalesList"
+              format="yyyy.MM.dd"
+            >
+            <template slot="button-cancel">
+              <span @click="resetDate">초기화</span>
+            </template>
+            </datetime>
           </div>
+          <!-- <div class="grid grid-1-6">
+            <button type="button" class="btn gray fill" @click="getSalesList">검색</button>
+          </div> -->
         </div>
       </div>
       <ul class="sales_wrap">
@@ -92,20 +105,23 @@ export default {
   computed: {
     _salesList () {
       return this.salesList
+        .filter(item => item.productType.indexOf(this.searchForm.productType) > -1)
         .filter(item => item.customerName.indexOf(this.searchForm.customerName) > -1)
-        // .filter(item => item.salesDate <= this.searchForm.salesDate)
+        .filter(item => this.getToDate(item.salesDate) <= (this.searchForm.salesDate ? this.getToDate(this.searchForm.salesDate) : '9999-9999-9999'))
     }
   },
   data () {
     return {
       searchForm: {
+        productType: '',
         customerName: '',
-        salesDate: ''
+        salesDate: null
       },
       salesList: []
     }
   },
   methods: {
+    resetDate () { this.searchForm.salesDate = null },
     async deleteSales (item) {
       const ok = window.confirm(`[${item.customerName}] 정말 삭제하시겠습니까?`)
       if (ok) {
@@ -118,9 +134,8 @@ export default {
       }
     },
     async getSalesList () {
+      console.log(this.getToDate())
       dbService.collection('sales')
-        // .where('customerName', 'array-contains', this.searchForm.customerName)
-        // .where('salesDate', '<=', this.searchForm.salesDate)
         .orderBy('salesDate', 'desc')
         .onSnapshot(snapshot => {
           this.salesList = snapshot.docs.map(doc => ({
