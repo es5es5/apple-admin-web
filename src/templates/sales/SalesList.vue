@@ -6,8 +6,7 @@
           <div class="grid grid-1-3">
             <select name="상품_구분" id="상품_구분" v-model="searchForm.productType">
               <option value="">상품 전체</option>
-              <option value="사과">사과</option>
-              <option value="들기름">들기름</option>
+              <option :value="item.type" v-for="(item, index) in productTypeList" :key="index">{{ item.name }}</option>
             </select>
           </div>
           <div class="grid grid-1-3">
@@ -40,10 +39,13 @@
               </div>
               <div class="grid grid-1-5">
                 <div class="apple_wrap" v-if="item.productType === '사과'" :data-appleCount="item.appleCount">
-                  <img :src="require(`@/assets/images/apple-empty.svg`)" alt="" class="apple">
+                  <img :src="require(`@/assets/images/apple-empty.svg`)" alt="apple" class="apple">
+                </div>
+                <div class="juice_wrap" v-if="item.productType === '사과즙'" :data-appleCount="item.appleJuiceSize">
+                  <img :src="require(`@/assets/images/juice.svg`)" alt="juice" class="juice">
                 </div>
                 <div class="bottle_wrap" v-if="item.productType === '들기름'" :data-appleCount="`${item.oilAmount}`">
-                  <img :src="require(`@/assets/images/bottle.svg`)" alt="" class="bottle">
+                  <img :src="require(`@/assets/images/bottle.svg`)" alt="bottle" class="bottle">
                 </div>
               </div>
               <div class="grid grid-1-5 empty"></div>
@@ -184,7 +186,7 @@ export default {
       color: $error;
     }
 
-    .apple_wrap, .bottle_wrap {
+    .apple_wrap, .bottle_wrap, .juice_wrap {
       position: relative;
       margin-bottom: .5rem;
       display: inline-block;
@@ -195,8 +197,19 @@ export default {
     .apple_wrap::after {
       position: absolute;
       font-size: 1.25rem;
-      left: 1.43rem;
+      left: 1.5rem;
       top: 1.9rem;
+      transform: translate(-50%, -50%);
+      content: attr(data-appleCount);
+      pointer-events: none;
+      font-weight: bolder;
+    }
+
+    .juice_wrap::after {
+      position: absolute;
+      font-size: 1rem;
+      left: 1.5rem;
+      top: 2.3rem;
       transform: translate(-50%, -50%);
       content: attr(data-appleCount);
       pointer-events: none;
@@ -214,10 +227,16 @@ export default {
       font-weight: bolder;
     }
 
-    .bottle {
+    .apple, .bottle {
       width: 3rem;
       display: inline-block;
     }
+
+     .juice {
+       margin-left: .25rem;
+       width: 2.5rem;
+       display: inline-block;
+     }
 
     .price {
       position: absolute;

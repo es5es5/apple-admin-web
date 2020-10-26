@@ -9,7 +9,17 @@ export default {
     Vue.mixin({
       data () {
         return {
-          loadData: true
+          loadData: true,
+          productTypeList: [{
+            name: '사과',
+            type: '사과'
+          }, {
+            name: '사과즙',
+            type: '사과즙'
+          }, {
+            name: '들기름',
+            type: '들기름'
+          }]
         }
       },
       computed: {

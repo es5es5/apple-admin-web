@@ -6,13 +6,17 @@
           <legend>상품 정보</legend>
           <label for="상품_구분" class="required" :class="{'error': errors.has('상품_구분'), 'valid': fields['상품_구분'] ? fields['상품_구분'].valid : false}">상품 구분</label>
           <select name="상품_구분" id="상품_구분" v-model="salesForm.productType" v-validate="'required'">
-            <option value="사과">사과</option>
-            <option value="들기름">들기름</option>
+            <option :value="item.type" v-for="(item, index) in productTypeList" :key="index">{{ item.name }}</option>
           </select>
 
           <template v-if="salesForm.productType === '사과'">
             <label for="사과" class="required" :class="{'error': errors.has('사과'), 'valid': fields['사과'] ? fields['사과'].valid : false}">사과 개수</label>
             <input type="number" id="사과" name="사과" min="0" placeholder="사과 개수" v-model="salesForm.appleCount" :v-validate="salesForm.productType === '사과' ? 'required' : null">
+          </template>
+
+          <template v-else-if="salesForm.productType === '사과즙'">
+            <label for="사과즙" class="required" :class="{'error': errors.has('사과즙'), 'valid': fields['사과즙'] ? fields['사과즙'].valid : false}">사과즙 갯수</label>
+            <input type="number" id="사과즙" name="사과즙" min="0" placeholder="사과즙 갯수" v-model="salesForm.appleJuiceSize" v-validate="'required'">
           </template>
 
           <template v-else-if="salesForm.productType === '들기름'">
@@ -76,7 +80,6 @@ export default {
     return {
       salesForm: {
         productType: '사과',
-        appleCount: '',
         customerName: '',
         customerMobile: '',
         customerAddress: '',
