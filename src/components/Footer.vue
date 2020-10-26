@@ -1,7 +1,7 @@
 <template>
   <footer id="footer">
     <div class="footer_wrap">
-      <slot name="button" v-if="height > 600"></slot>
+      <slot name="button" v-if="height > 450"></slot>
       <!-- <button type="button" class="btn-fill" @click="goCreate(_model)">등록하기</button> -->
     </div>
   </footer>
