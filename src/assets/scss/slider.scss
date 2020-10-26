@@ -1,5 +1,7 @@
 @charset 'utf-8';
 #app #header .header_wrap .slider {
+  margin-top: 0;
+  max-height: 100vh;
   .bm-burger-button {
     position: fixed;
     width: 2rem;
@@ -36,7 +38,7 @@
   }
 
   .bm-menu {
-    height: 100%; /* 100% Full-height */
+    height: 100vh; /* 100% Full-height */
     width: 0; /* 0 width - change this with JavaScript */
     position: fixed; /* Stay in place */
     z-index: 1000; /* Stay on top */

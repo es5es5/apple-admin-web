@@ -25,10 +25,10 @@
         <img src="@/assets/images/logout.svg" alt="logout" class="sliderIcon">
         로그아웃
       </li>
-      <li class="honeybee">
+      <div class="honeybee_wrap">
         <span class="made">Designed By.</span>
         <img src="@/assets/images/honeybee.svg" alt="honeybee" class="honeybee">
-      </li>
+      </div>
     </Slide>
   </div>
 </template>
@@ -92,9 +92,11 @@ export default {
 li.logout {
   margin-top: 3rem;
 }
-li.honeybee {
-  margin-top: 15rem;
-  // margin-left: 5rem;
+
+.honeybee_wrap {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
 
   .made {
     font-size: 1rem;
