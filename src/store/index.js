@@ -8,7 +8,8 @@ export default new Vuex.Store({
     user: {
       uid: '',
       displayName: '',
-      email: ''
+      email: '',
+      isAnonymous: false
     }
   },
   mutations: {
@@ -16,8 +17,11 @@ export default new Vuex.Store({
       Object.assign(state.user, {
         uid: value.uid,
         displayName: value.displayName,
-        email: value.email
+        email: value.email,
+        isAnonymous: value.isAnonymous
       })
+
+      if (state.user.isAnonymous) state.user.displayName = '게스트'
     }
   },
   getters: {

@@ -11,10 +11,14 @@
             <img src="@/assets/images/google.svg" alt="google" class="social-logo">
             구글 계정으로 로그인
           </button>
+          <button type="button" class="btn-social anonymous" @click="signInAnonymously">
+            <img src="@/assets/images/woman.svg" alt="anonymous" class="social-logo">
+            게스트 계정으로 로그인
+          </button>
         </div>
-        <div class="join_wrap">
+        <!-- <div class="join_wrap">
           <span class="join">회원가입</span><span class="separator">|</span><span>비밀번호 찾기</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -44,6 +48,10 @@ export default {
       const user = await authService.signInWithPopup(provider)
       this.$store.commit('setUser', user.user)
       this.$router.push({ name: 'Home' })
+    },
+    async signInAnonymously () {
+      const user = await authService.signInAnonymously()
+      console.log(user)
     }
   }
 }
@@ -94,9 +102,10 @@ export default {
   padding: 0 1rem;
 
   .btn-social {
+    position: relative;
     width: 100%;
     border: 1px solid transparent;
-    padding: 1rem 0;
+    padding: 1rem 0 1rem 2rem;
     font-weight: bold;
     font-size: 1.25rem;
     border-radius: .5rem;
@@ -108,13 +117,21 @@ export default {
       line-height: 1.5rem;
       border: 2px solid $border;
     }
+
+    &.anonymous {
+      background-color: #fff;
+      color: $gray;
+      line-height: 1.5rem;
+      border: 2px solid $border;
+    }
   }
 
   .social-logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
     width: 1.5rem;
     vertical-align: top;
-    background-color: #fff;
-    margin-right: 1.25rem;
   }
 }
 
