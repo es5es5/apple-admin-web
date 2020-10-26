@@ -69,7 +69,7 @@ export default {
 
   &.scrolling {
     color: $primary;
-    background-color: rgba($background, .9);
+    background-color: rgba($background, .8);
     -webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);
     -moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);
     box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, .5);

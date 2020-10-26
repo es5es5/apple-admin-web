@@ -60,7 +60,7 @@ export default {
   letter-spacing: .25rem;
   border-radius: 1rem 1rem 0 0;
 
-  &.primary { background-color: $primary; }
-  &.orange { background-color: $orange; }
+  &.primary { background-color: rgba($primary, .8); }
+  &.orange { background-color: rgba($orange, .8); }
 }
 </style>
