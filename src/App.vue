@@ -24,6 +24,7 @@ import {
 export default {
   name: 'App',
   created () {
+    location.href = `intent://${location.host}#Intent;scheme=http;package=com.android.chrome;end`
     this.initProtocalPlugins()
     this.setUser()
   },
