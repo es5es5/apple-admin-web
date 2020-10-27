@@ -19,9 +19,22 @@
 
 <script>
 import Header from './Header'
+import {
+  // authService,
+  dbService
+} from '@/plugins/fbase'
 
 export default {
   name: 'Home',
+  created () {
+    dbService.collection('inflow-log').add({
+      userAgent: window.navigator.userAgent,
+      routeName: this.$route.name,
+      fullPath: this.$route.fullPath,
+      userInfo: this.mixinUser,
+      createtime: this.getToDate(Date.now(), 'yyyy-MM-dd HH:mm:ss')
+    })
+  },
   components: {
     Header
   }

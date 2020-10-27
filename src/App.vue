@@ -18,13 +18,22 @@
 <script>
 import {
   authService
-  // dbService
 } from '@/plugins/fbase'
 
 export default {
   name: 'App',
   created () {
-    location.href = `intent://${location.host}#Intent;scheme=http;package=com.android.chrome;end`
+    const USER_AGENT = navigator.userAgent.toLowerCase()
+    const IOS_LIST = ['iphone', 'ipad', 'ipod']
+    if (USER_AGENT.indexOf('android') > -1) {
+      console.log('USER_AGENT: android')
+      location.href = `intent://${location.host}#Intent;scheme=http;package=com.android.chrome;end`
+    } else if (IOS_LIST.includes(USER_AGENT)) {
+      console.log('USER_AGENT: ios')
+    } else {
+      console.log('USER_AGENT: other')
+    }
+
     this.initProtocalPlugins()
     this.setUser()
   },
