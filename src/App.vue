@@ -23,11 +23,11 @@ import {
 
 export default {
   name: 'App',
-  beforeCreate () {
-    if (window.innerWidth < 1024) {
-      this.$router.push({ name: 'Preview' })
-    }
-  },
+  // beforeCreate () {
+  //   if (window.innerWidth < 1024) {
+  //     this.$router.push({ name: 'Preview' })
+  //   }
+  // },
   created () {
     const USER_AGENT = navigator.userAgent.toLowerCase()
     const IOS_LIST = ['iphone', 'ipad', 'ipod']
