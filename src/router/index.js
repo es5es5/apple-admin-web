@@ -6,6 +6,8 @@ import { authService } from '@/plugins/fbase'
 import MainLayout from '@/components/MainLayout'
 import Login from '@/components/Login'
 import Home from '@/components/Home'
+import Preview from '@/components/Preview'
+
 import NotFound from '@/components/NotFound'
 
 Vue.use(VueRouter)
@@ -18,6 +20,14 @@ const routes = [
       title: '홈'
     },
     component: Home
+  },
+  {
+    path: '/preview',
+    name: 'Preview',
+    meta: {
+      title: ''
+    },
+    component: Preview
   },
   {
     path: '/main',

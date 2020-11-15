@@ -4,6 +4,7 @@
       <router-view/>
     </transition>
     <GoTop
+      v-if="_IGNORE"
       :max-width="1"
       :boundary="150"
       :z-index="900"
@@ -22,6 +23,11 @@ import {
 
 export default {
   name: 'App',
+  beforeCreate () {
+    if (window.innerWidth < 1024) {
+      this.$router.push({ name: 'Preview' })
+    }
+  },
   created () {
     const USER_AGENT = navigator.userAgent.toLowerCase()
     const IOS_LIST = ['iphone', 'ipad', 'ipod']
@@ -38,6 +44,7 @@ export default {
     this.setUser()
   },
   computed: {
+    _IGNORE () { return this.$route.name !== 'Preview' },
     _width () { return window.innerWidth / 10 }
   },
   methods: {
