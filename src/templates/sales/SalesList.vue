@@ -47,6 +47,9 @@
                 <div class="bottle_wrap" v-if="item.productType === '들기름'" :data-appleCount="`${item.oilAmount}`">
                   <img :src="require(`@/assets/images/bottle.svg`)" alt="bottle" class="bottle">
                 </div>
+                <div class="blackbean_wrap" v-if="item.productType === '서리태'" :data-blackbeanAmount="`${item.blackbeanAmount}`">
+                  <img :src="require(`@/assets/images/blackbean.svg`)" alt="blackbean" class="blackbean">
+                </div>
               </div>
               <div class="grid grid-1-5 empty"></div>
             </div>
@@ -186,7 +189,7 @@ export default {
       color: $error;
     }
 
-    .apple_wrap, .bottle_wrap, .juice_wrap {
+    .apple_wrap, .bottle_wrap, .juice_wrap, .blackbean_wrap {
       position: relative;
       margin-bottom: .5rem;
       display: inline-block;
@@ -227,16 +230,34 @@ export default {
       font-weight: bolder;
     }
 
+    .blackbean_wrap::after {
+      position: absolute;
+      font-size: 1.5rem;
+      left: 1.5rem;
+      top: 1.25rem;
+      transform: translate(-50%, -50%);
+      content: attr(data-blackbeanAmount);
+      pointer-events: none;
+      font-weight: bolder;
+    }
+
     .apple, .bottle {
       width: 3rem;
       display: inline-block;
     }
 
-     .juice {
-       margin-left: .25rem;
-       width: 2.5rem;
-       display: inline-block;
-     }
+    .juice {
+      margin-left: .25rem;
+      width: 2.5rem;
+      display: inline-block;
+    }
+
+    .blackbean {
+      margin-left: .25rem;
+      width: 2.5rem;
+      display: inline-block;
+      opacity: .2;
+    }
 
     .price {
       position: absolute;

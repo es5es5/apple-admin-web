@@ -23,6 +23,11 @@
             <label for="들기름" class="required" :class="{'error': errors.has('들기름'), 'valid': fields['들기름'] ? fields['들기름'].valid : false}">들기름 용량</label>
             <input type="number" id="들기름" name="들기름" min="0" placeholder="들기름 용량" v-model="salesForm.oilAmount" :v-validate="salesForm.productType === '들기름' ? 'required' : null">
           </template>
+
+          <template v-else-if="salesForm.productType === '서리태'">
+            <label for="서리태" class="required" :class="{'error': errors.has('서리태'), 'valid': fields['서리태'] ? fields['서리태'].valid : false}">서리태 용량</label>
+            <input type="number" id="서리태" name="서리태" min="0" placeholder="서리태 용량" v-model="salesForm.blackbeanAmount" :v-validate="salesForm.productType === '서리태' ? 'required' : null">
+          </template>
         </fieldset>
       </form>
 

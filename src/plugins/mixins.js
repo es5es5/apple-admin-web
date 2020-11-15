@@ -19,6 +19,9 @@ export default {
           }, {
             name: '들기름',
             type: '들기름'
+          }, {
+            name: '서리태',
+            type: '서리태'
           }]
         }
       },
