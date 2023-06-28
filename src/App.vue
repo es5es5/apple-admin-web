@@ -33,7 +33,7 @@ export default {
     const IOS_LIST = ['iphone', 'ipad', 'ipod']
     if (USER_AGENT.indexOf('android') > -1) {
       console.log('USER_AGENT: android')
-      location.href = `intent://${location.host}#Intent;scheme=http;package=com.android.chrome;end`
+      // location.href = `intent://${location.host}#Intent;scheme=http;package=com.android.chrome;end`
     } else if (IOS_LIST.includes(USER_AGENT)) {
       console.log('USER_AGENT: ios')
     } else {
@@ -56,8 +56,8 @@ export default {
         if (user) {
           this.$store.commit('setUser', user)
         } else {
-          // this.$router.push({ name: 'Login' })
-          this.$store.commit('setUser', null)
+          this.$router.push({ name: 'Login' })
+          // this.$store.commit('setUser', null)
         }
       })
     },
