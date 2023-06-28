@@ -56,8 +56,8 @@ export default {
         if (user) {
           this.$store.commit('setUser', user)
         } else {
-          this.$router.push({ name: 'Login' })
-          // this.$store.commit('setUser', null)
+          // this.$router.push({ name: 'Login' })
+          this.$store.commit('setUser', null)
         }
       })
     },
